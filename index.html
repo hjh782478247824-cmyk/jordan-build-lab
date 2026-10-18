@@ -485,4 +485,34 @@ document.getElementById('funFind').onclick=()=>{
 };
 document.getElementById('funClear').onclick=()=>{mb.value='';mo.value='';document.getElementById('funYear').value='';document.getElementById('funBlood').value='';last=[];document.getElementById('funResult').innerHTML='';};
 })();
-</script></body></html>
+</script>
+<!-- 팁 버튼 독립 실행 복구: 다른 기능 오류와 분리 -->
+<script>
+(function(){
+  const btn=document.getElementById('nexttip'),box=document.getElementById('coachtip');
+  if(!btn||!box)return;
+  let index=0,seen=0,limit=2+Math.floor(Math.random()*4),showingAd=false;
+  const fallback=[['선알파 금지','마스터 이는 Q를 먼저 쓰기보다 상대 핵심 스킬을 피할 때 활용해.'],['미니맵 확인','정글 이동 중에도 미니맵을 자주 확인해.'],['킬보다 오브젝트','킬 이후 용과 타워 같은 목표를 확인해.'],['무리한 추격 금지','적이 포탑 뒤로 빠지면 추격보다 생존을 우선해.']];
+  const safe=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function tips(){try{if(typeof getTips==='function'){let a=getTips();if(a&&a.length)return a}}catch(e){}return fallback}
+  function ads(){try{if(typeof getShoeAds==='function')return getShoeAds();if(typeof PUBLIC_SHOE_ADS!=='undefined')return PUBLIC_SHOE_ADS.filter(a=>a&&a.name&&/^https:\/\//.test(a.link))}catch(e){}return []}
+  function draw(){
+    const a=ads();
+    if(showingAd&&a.length){
+      const ad=a[Math.floor(Math.random()*a.length)];
+      box.innerHTML='<div class="tag">광고 · 쿠팡파트너스</div><h3>추천 상품</h3><p class="small">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p><div class="flex">'+(ad.image?'<img src="'+safe(ad.image)+'" alt="'+safe(ad.name)+'" style="width:120px;height:110px;object-fit:contain;background:white;border-radius:9px" onerror="this.style.display=\'none\'">':'')+'<div><b>'+safe(ad.name)+'</b><p class="small">게임 공략과 별개인 제휴 광고</p><a href="'+safe(ad.link)+'" target="_blank" rel="noopener noreferrer sponsored" style="color:#f1cf7e">상품 확인하기 ↗</a></div></div>';
+    }else{
+      const t=tips(),x=t[index%t.length];
+      box.innerHTML='<div class="tag">아이언·브론즈 실전 팁</div><h3>'+safe(x[0])+'</h3><p>'+safe(x[1])+'</p>';
+    }
+  }
+  btn.onclick=function(){
+    if(showingAd){showingAd=false;seen=0;limit=2+Math.floor(Math.random()*4);index++}
+    else if(ads().length&&++seen>=limit){showingAd=true}
+    else{index++}
+    draw();
+  };
+  if(!box.textContent.trim())draw();
+})();
+</script>
+</body></html>
