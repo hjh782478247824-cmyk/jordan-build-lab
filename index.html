@@ -1,0 +1,475 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>조던힘조던 빌드 연구소 V9.3</title><style>
+*{box-sizing:border-box}body{margin:0;background:#0a1424;color:#eaf1ff;font-family:system-ui,'Malgun Gothic',sans-serif}header{background:#142742;border-bottom:1px solid #4b6688;padding:22px}main{max-width:1200px;margin:auto;padding:18px}h1{margin:0 0 7px;font-size:25px}h2{font-size:20px;margin:0 0 14px}h3{margin:8px 0}p{color:#b9cbe3;line-height:1.6}.panel{background:#192b43;border:1px solid #47607c;border-radius:14px;padding:18px;margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.champgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px}.champbox{position:relative}input,select,button{font:inherit;border-radius:9px;border:1px solid #547193;padding:10px;background:#0d1c30;color:white;width:100%}button{cursor:pointer}button:hover{border-color:#f2cb75}.gold{background:#edc976;color:#122139;border:0;font-weight:800}.small{font-size:12px;color:#b3c8df}.hint{font-size:13px;color:#9eb6d0}.dropdown{position:absolute;z-index:20;top:100%;left:0;right:0;background:#0e2038;border:1px solid #7c9abd;max-height:270px;overflow:auto;border-radius:8px;box-shadow:0 10px 20px #0009}.choice{display:flex;align-items:center;gap:8px;padding:7px;cursor:pointer}.choice:hover{background:#294768}.avatar{width:34px;height:34px;border-radius:6px;object-fit:cover;background:#263a53}.mainitem[title],.alt[title]{cursor:help}.itemicon{width:45px;height:45px;border-radius:8px;background:#30445a}.buildrow{display:grid;grid-template-columns:minmax(220px,1.2fr) minmax(0,2fr);gap:10px;margin:12px 0}.mainitem,.alternatives{background:#0e2037;border:1px solid #4c6686;border-radius:11px;padding:12px}.alternatives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.alt{border:1px solid #385875;border-radius:8px;padding:9px}.itemhead{display:flex;align-items:center;gap:9px}.tag{font-size:12px;color:#ffe19c}.why{font-size:13px;color:#bcd1e7;margin-top:7px}.runes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.runecard{background:#102239;border:1px solid #4c6887;padding:11px;border-radius:10px}.runeicon{width:40px;height:40px;object-fit:contain}.good{color:#8ee7b2}.bad{color:#ffb6ba}.warn{color:#f3d58d}.flex{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.flex button{width:auto}.saved{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.saved span{background:#0b1d33;padding:8px;border:1px solid #486481;border-radius:8px}hr{border:0;border-top:1px solid #405a78;margin:18px 0}@media(max-width:700px){.buildrow{grid-template-columns:1fr}.alternatives{grid-template-columns:1fr}header{padding:16px}}
+ .adbox{margin-top:16px;padding:15px;background:#0d2034;border:1px dashed #b79a57;border-radius:12px}.adfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:10px 0}.adbox a{color:#f1cf7e}.adbox .flex button{width:auto}.adnotice{font-size:12px;color:#f1cf7e;margin:8px 0} .adlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:10px}.adentry{background:#102239;border:1px solid #45617e;border-radius:10px;padding:12px;min-width:0}.adentry img{width:76px;height:76px;object-fit:contain;background:white;border-radius:8px}.adentry a{color:#f1cf7e;overflow-wrap:anywhere}.adentry button{width:auto;margin-top:8px;padding:7px 12px}.adentry .admeta{min-width:0;flex:1}.adentry .small{overflow-wrap:anywhere}</style><style>
+.personality-result{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}.personality-card{background:#0d2038;border:1px solid #547193;border-radius:12px;padding:13px}.personality-card b{color:#f2cf83}.personality-card button{margin-top:10px}.personality-note{font-size:12px;color:#a9c0dc;margin-top:8px}
+</style></head><body><header><h1>⚔️ 조던힘조던 빌드 연구소 V9.3</h1><div class="small">초보자용 무료 팬 프로젝트 · 기본 추천 5개와 재미있는 대안템 비교 · 아이언/브론즈 팁</div></header><main><section class="panel" style="border-color:#b79a57"><b>🎮 비공식 무료 팬 프로젝트 · 공개 전 점검용 V9.3</b><p class="hint">라이엇 게임즈가 제작·후원·승인한 프로그램이 아닙니다. 아이템·룬 추천은 재미와 학습을 위한 예시이며, 승률이나 최신 메타를 보장하지 않습니다. 공식 게임 데이터와 이미지의 권리는 각 권리자에게 있습니다.</p><p class="small">This product is not endorsed, certified or otherwise approved by Riot Games. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p><p class="small">공개 서비스 등록·라이엇 정책 및 상업적 이용 조건 확인 전에는 비공개 테스트용으로만 사용해 주세요. 면책 문구 추가만으로 배포 허가가 완료되는 것은 아닙니다. <a href="https://developer.riotgames.com/" target="_blank" rel="noopener noreferrer" style="color:#f1cf7e">Riot Developer Portal ↗</a></p></section>
+<section class="panel" id="personalityPanel" style="border-color:#b79a57"><h2>🔮 나만의 롤 포지션·챔피언 찾기</h2><p class="hint">MBTI·태어난 연도와 월·혈액형으로 재미있게 나와 어울리는 포지션과 챔피언을 찾아봐! 결과는 성격이나 실력을 과학적으로 판단하는 테스트가 아닌 <b>오락용 매칭</b>이야.</p><div class="grid"><label>MBTI<select id="funMbti"><option value="">선택하기</option></select></label><label>태어난 연도<input type="number" id="funYear" min="1940" max="2026" placeholder="예: 1977" inputmode="numeric"></label><label>태어난 월<select id="funMonth"><option value="">선택하기</option></select></label><label>혈액형<select id="funBlood"><option value="">선택하기</option><option>A형</option><option>B형</option><option>O형</option><option>AB형</option><option value="모름">모름 / 비공개</option></select></label></div><div class="flex" style="margin-top:12px"><button class="gold" id="funFind" style="width:auto">🎲 내 운명의 포지션·챔피언 추천!</button><button id="funClear" style="width:auto">입력 초기화</button></div><div id="funResult" aria-live="polite"></div><p class="personality-note">입력 정보는 서버로 전송하지 않으며 이 페이지에서는 저장하지 않아. 결과가 마음에 들면 추천 적용 버튼으로 아래 빌드 연구소에 바로 연결할 수 있어.</p></section><section class="panel"><h2>🧑‍🚀 내 포지션과 챔피언 선택</h2><div class="grid"><label>내 포지션<select id="position"><option value="JUNGLE">정글</option><option value="TOP">탑</option><option value="MID">미드</option><option value="BOTTOM">원딜</option><option value="UTILITY">서포터</option></select></label><div class="champbox"><label>내 챔피언 (이름 일부 자동완성)</label><div class="flex" style="flex-wrap:nowrap"><img class="avatar" id="myavatar" style="display:none"><input id="mychamp" autocomplete="off" value="마스터 이" placeholder="예: 마"></div><div class="dropdown" id="mysuggest" style="display:none"></div></div></div><p class="hint" id="playerstatus">내 챔피언과 포지션을 먼저 고르면 추천 아이템과 룬이 바뀌어.</p></section><section class="panel"><h2>🎯 상대 팀 챔피언 (자동완성)</h2><p class="hint">'마'를 입력하면 이름에 '마'가 포함된 챔피언을 보여줘. 온라인일 때 전체 챔피언 목록과 초상화를 자동으로 불러와.</p><div class="champgrid" id="champs"></div><div class="flex" style="margin-top:13px"><label>플레이 스타일 <select id="style"><option value="balanced">전사 (공격·생존)</option><option value="tank">탱커 (방어·체력)</option><option value="ad">AD 딜러 (물리 공격)</option><option value="ap">AP 딜러 (마법 공격)</option><option value="burst">치명타 딜러 (치명타)</option><option value="chase">공격 속도 딜러 (연속 공격)</option><option value="assassin">암살자 (순간 폭딜)</option><option value="support">서포터·힐러 (보호·회복)</option></select></label><button class="gold" id="refresh">상대 조합 추천 갱신</button></div><div class="small" id="champstatus"></div></section>
+<section class="panel"><h2>🛡️ 초보자 기본템 1~5번 + 상황별 교체 대안</h2><p class="hint">기본템은 역할별 연습용 예시이며 최신 패치 승률 기반 추천은 아니야. 아무무는 상황별 방어 아이템을 비교하고, 신발은 별도로 선택해. 대안은 챔피언 역할과 상대 조합을 함께 고려해 2개를 우선 표시해. '대안 더 보기'를 누르면 다른 방향의 후보도 펼쳐져. 대안을 선택하면 해당 메인 슬롯만 교체돼. 신발은 코어템 대안에 섞지 않고 별도로 안내해.</p><div id="matchup" class="mainitem" style="margin-bottom:12px"></div><div id="build"></div><div class="flex"><button class="gold" id="save">현재 빌드 저장</button><button id="reset">추천 빌드로 초기화</button></div><div class="saved" id="saved"></div></section>
+<section class="panel"><h2>🧪 내 챔피언·포지션별 추천 룬 / 적용 제한</h2><div class="hint" id="runerecommend"></div><p class="hint">룬을 클릭하면 활용 조건과 제한을 표시해. 추천 표시는 완성된 룬 페이지가 아닌 참고 후보야. 룬의 정확한 수치는 패치에 따라 변할 수 있어.</p><div class="runes" id="runes"></div><div id="runeinfo" class="mainitem" style="margin-top:12px"></div></section><section class="panel"><h2>🎓 아이언·브론즈 탈출 실전 팁</h2><p class="hint">챔피언·포지션·플레이 스타일에 따라 기본 팁이 달라져. 팁을 2~5개 본 뒤 무작위 간격으로 러닝화 광고가 나와. 광고가 없으면 팁만 계속 보여줘.</p><div id="coachtip" class="mainitem"></div><div class="flex" style="margin-top:12px"><button class="gold" id="nexttip">다음 팁 보기 ↻</button></div><details class="adbox" style="margin-top:16px"><summary style="cursor:pointer;font-weight:700">⚙️ 광고 상품 관리 (테스트용 · 펼치기)</summary><p class="adnotice">등록 상품은 이 브라우저에만 저장돼. 방문자에게 자동 노출하려면 배포 파일에 상품 목록을 포함해야 해.</p><div class="adfields"><input id="shoeName" placeholder="러닝화 상품명"><input id="shoeImage" placeholder="이미지 URL (선택, https://)"><input id="shoeLink" placeholder="쿠팡파트너스 링크 (https://)"></div><div class="flex"><button class="gold" id="shoeAdd">광고 상품 등록</button><button id="shoeClear">등록 광고 전체 삭제</button></div></details><div class="mainitem" style="margin-top:18px"><h3>📦 현재 등록된 광고 <span id="shoeCount" class="tag"></span></h3><p class="small">등록한 광고 전체 목록이야. 상품별 링크 확인 및 개별 삭제가 가능해. 광고는 팁 사이에 무작위로 등장해.</p><div id="shoeAdList" class="adlist"></div></div></div></section><p class="small">※ V9.2는 챔피언 역할 기반의 규칙형 연구용 추천이야. 추천 아이템은 포지션과 챔피언 역할별 예시이며 모든 챔피언의 실제 최적 빌드를 보장하지 않아. 승률 통계나 실시간 게임 패치를 자동 분석하지 않으며, 아이템 위에 마우스를 올리면 온라인에서 불러온 라이엇 Data Dragon 아이템 설명을 볼 수 있어. 정확한 최신 수치는 클라이언트에서 확인해 줘. 챔피언·아이템 이미지는 인터넷 연결이 필요할 수 있어.</p></main><script>
+const VERSION='15.20.1';let ddVersion=VERSION, champions=[], selected=Array(5).fill(null), current=[],expanded=new Set(), myChampion={name:"마스터 이",id:"MasterYi",tags:["Fighter","Assassin"]}, itemDetails={};
+const fallback=['아리','볼리베어','워윅','사일러스','마스터 이','마오카이','말파이트','마오카이','마스터 이','카르마','아무무','사미라','니달리','르블랑','블리츠크랭크','브랜드','럭스','리 신','세트','애쉬','징크스','다리우스','가렌','나서스','문도 박사','람머스','레오나','노틸러스','자크','오른','초가스','케이틀린','야스오','요네','카타리나','제드','탈론','티모','모르가나','밀리오','바루스','카이사','베인','진','트리스타나','아트록스','신 짜오','카밀','나미','소라카','유미','스웨인','블라디미르','말자하','마오카이','마스터 이','마오카이','마스터 이','마오카이'].filter(x=>!x.includes('?')&&!x.includes('아님'));
+champions=[...new Set(fallback)].map(name=>({name,id:name==='마스터 이'?'MasterYi':'',tags:name==='아무무'||name==='말파이트'||name==='람머스'||name==='레오나'||name==='노틸러스'?['Tank']:name==='아리'||name==='럭스'||name==='브랜드'?['Mage']:name==='징크스'||name==='애쉬'||name==='케이틀린'?['Marksman']:[]}));
+const items={
+kraken:{name:'크라켄 학살자',id:6672,roles:['공속','지속딜'],desc:'반복 공격으로 피해 누적'},
+bork:{name:'몰락한 왕의 검',id:3153,roles:['피흡','공속','체력비례'],desc:'현재 체력 비례 피해·생명력 흡수·추격'},
+gu:{name:'구인수의 격노검',id:3124,roles:['공속','적중효과'],desc:'기본 공격 적중 효과 중심'},
+wits:{name:'마법사의 최후',id:3091,roles:['마저','공속','적중효과'],desc:'마법 저항력과 공격 속도'},
+death:{name:'죽음의 무도',id:6333,roles:['방어','생존'],desc:'물리 피해 대응과 처치 후 생존'},
+ga:{name:'수호 천사',id:3026,roles:['방어','부활'],desc:'부활 효과로 한타 실수 보완'},
+shield:{name:'불멸의 철갑궁',id:6673,roles:['치명','생존','보호막'],desc:'치명타 + 위기 시 보호막'},
+collector:{name:'징수의 총',id:6676,roles:['치명','폭딜'],desc:'치명타·물리 관통·마무리'},
+ie:{name:'무한의 대검',id:3031,roles:['치명','폭딜'],desc:'치명타 피해 강화'},
+ldr:{name:'도미닉 경의 인사',id:3036,roles:['치명','방관'],desc:'방어력 높은 적 대응'},
+mortal:{name:'필멸자의 운명',id:3033,roles:['치명','방관','치감'],desc:'방어력 관통과 회복 감소'},
+mercury:{name:'헤르메스의 시미터',id:3139,roles:['마저','치명','해제'],desc:'일부 군중 제어 해제'},
+maw:{name:'맬모셔스의 아귀',id:3156,roles:['마저','생존','보호막'],desc:'마법 피해 폭딜 대응'},
+scim:{name:'피바라기',id:3072,roles:['피흡','생존'],desc:'높은 생명력 흡수·보호막'},
+terminus:{name:'경계',id:3302,roles:['공속','관통','적중효과'],desc:'반복 공격으로 관통력·방어 능력'},
+stride:{name:'발걸음 분쇄기',id:6631,roles:['체력','추격'],desc:'체력·추격 및 근접 교전'},
+hex:{name:'실험적 마공학판',id:3073,roles:['체력','공속','궁극기'],desc:'궁극기 활용형 체력·공속'},
+sterak:{name:'스테락의 도전',id:3053,roles:['체력','생존','보호막'],desc:'순간 폭딜 대응'},
+randuin:{name:'란두인의 예언',id:3143,roles:['방어','체력','치명대응'],desc:'치명타 위협이 큰 상대 대응'},
+spirit:{name:'정령의 형상',id:3065,roles:['마저','체력','회복'],desc:'마법 피해와 회복 강화'},
+boots:{name:'광전사의 군화',id:3006,roles:['공속','이동'],desc:'공격 속도 중심 신발'},
+merboots:{name:'헤르메스의 발걸음',id:3111,roles:['마저','강인함'],desc:'마법 피해·군중 제어 대응'},
+plated:{name:'판금 장화',id:3047,roles:['방어','평타대응'],desc:'기본 공격 위협 대응'}
+};
+Object.assign(items,{
+malignance:{name:'악의',id: malignanceId(),roles:['주문력','궁극기'],desc:'궁극기 중심 마법사 후보'},shadowflame:{name:'그림자불꽃',id:4645,roles:['주문력','폭딜'],desc:'마법 피해 폭딜'},rabadon:{name:'라바돈의 죽음모자',id:3089,roles:['주문력'],desc:'주문력 증폭'},voidstaff:{name:'공허의 지팡이',id:3135,roles:['마관','주문력'],desc:'마법 저항력 대응'},zhonya:{name:'존야의 모래시계',id:3157,roles:['방어','생존','주문력'],desc:'경직 사용으로 생존'},morello:{name:'모렐로노미콘',id:3165,roles:['주문력','치감'],desc:'회복 감소'},heartsteel:{name:'강철심장',id:3084,roles:['체력','탱킹'],desc:'체력 성장형'},sunfire:{name:'태양불꽃 방패',id:3068,roles:['방어','체력'],desc:'근접 광역 피해'},thornmail:{name:'가시 갑옷',id:3075,roles:['방어','치감'],desc:'물리 피해 및 회복 대응'},youmuu:{name:'요우무의 유령검',id:3142,roles:['물관','이동'],desc:'기동성·물리 관통'},opportunity:{name:'기회',id:6701,roles:['물관','폭딜'],desc:'암살 진입·이탈'},serylda:{name:'세릴다의 원한',id:6694,roles:['방관','추격'],desc:'방어력 관통'},edge:{name:'밤의 끝자락',id:3814,roles:['생존','물관'],desc:'스킬 방어막'},solstice:{name:'천상의 이의',id:3876,roles:['서포트','생존'],desc:'서포터 퀘스트 아이템'},locket:{name:'강철의 솔라리 펜던트',id:3190,roles:['서포트','보호막'],desc:'아군 광역 보호막'},redemption:{name:'구원',id:3107,roles:['서포트','회복'],desc:'아군 회복 지원'},knight:{name:'기사의 맹세',id:3109,roles:['서포트','생존'],desc:'아군 보호'},mikael:{name:'미카엘의 축복',id:3222,roles:['서포트','해제'],desc:'아군 군중 제어 일부 해제'}
+});
+function malignanceId(){return 3118}
+const alternatives={kraken:['gu','bork','terminus','ie','collector'],bork:['scim','wits','gu','kraken','terminus','spirit'],gu:['kraken','terminus','wits','bork'],wits:['maw','mercury','spirit','gu'],death:['ga','sterak','randuin','shield'],ga:['death','sterak','shield','maw'],shield:['ga','sterak','scim','maw'],collector:['ie','ldr','mortal','kraken'],ie:['collector','ldr','shield','scim'],ldr:['mortal','terminus','ie'],mortal:['ldr','terminus','collector'],mercury:['wits','maw','spirit'],maw:['wits','mercury','sterak'],scim:['bork','shield','spirit','ga'],terminus:['gu','ldr','mortal','kraken'],stride:['bork','hex','sterak'],hex:['stride','kraken','gu'],sterak:['ga','death','shield'],randuin:['death','ga','plated'],spirit:['wits','maw','mercury'],boots:['merboots','plated'],merboots:['plated','boots'],plated:['merboots','boots']};
+Object.assign(alternatives,{malignance:['shadowflame','rabadon','voidstaff','zhonya'],shadowflame:['rabadon','voidstaff','morello'],rabadon:['shadowflame','voidstaff','zhonya'],voidstaff:['morello','shadowflame','rabadon'],zhonya:['rabadon','shadowflame','voidstaff'],heartsteel:['sunfire','randuin','spirit'],sunfire:['heartsteel','thornmail','randuin'],thornmail:['randuin','sunfire','spirit'],youmuu:['opportunity','serylda','edge'],opportunity:['youmuu','serylda','edge'],serylda:['youmuu','edge','opportunity'],edge:['youmuu','opportunity','serylda'],solstice:['locket','redemption','knight'],locket:['redemption','knight','mikael'],redemption:['locket','mikael','knight'],knight:['locket','redemption','mikael'],mikael:['redemption','locket','knight']});
+const tanks=['말파이트','오른','초가스','문도 박사','사이온','람머스','자크','나서스','볼리베어','세주아니','마오카이'];const ap=['아리','르블랑','브랜드','럭스','카타리나','베이가','블라디미르','말자하','애니','사일러스','모르가나','카르마'];const cc=['레오나','노틸러스','모르가나','럭스','아리','세주아니','말자하','람머스','마오카이','블리츠크랭크','아무무','애쉬'];const heal=['문도 박사','소라카','유미','블라디미르','워윅','아트록스','사일러스','스웨인'];
+function enemyNames(){return selected.filter(Boolean).map(x=>x.name)}
+function profile(){let n=enemyNames();return {tank:n.filter(x=>tanks.includes(x)).length,ap:n.filter(x=>ap.includes(x)).length,cc:n.filter(x=>cc.includes(x)).length,heal:n.filter(x=>heal.includes(x)).length}}
+const extraADThreats=['제드','탈론','카직스','렝가','리 신','그레이브즈','다리우스','가렌','피오라','이렐리아','리븐','트린다미어','드레이븐','미스 포츈','루시안','사미라','케이틀린','징크스','베인','야스오','요네','잭스','마스터 이'];
+function advancedThreat(){
+ const n=enemyNames(), p=threatProfile();
+ return {...p,ad:n.filter(x=>extraADThreats.includes(x)||(!ap.includes(x)&&!extraMagicEnemies.includes(x)&&!['소라카','유미','나미','밀리오'].includes(x))).length,
+ burst:n.filter(x=>['제드','탈론','렝가','카직스','아리','애니','르블랑','베이가','신드라','피즈','이블린','다이애나'].includes(x)).length};
+}
+function strategicScore(k){
+ const p=advancedThreat(),r=items[k]?.roles||[];let v=0;
+ if(p.ap>0&&r.includes('마저'))v+=p.ap*5;
+ if(p.ad>0&&r.includes('방어'))v+=p.ad*3;
+ if(p.heal>0&&r.includes('치감'))v+=p.heal*8;
+ if(p.tank>0&&r.some(x=>['체력비례','방관','마관','관통'].includes(x)))v+=p.tank*5;
+ if(p.cc>0&&r.some(x=>['해제','강인함'].includes(x)))v+=p.cc*4;
+ if(p.crit>0&&r.includes('치명대응'))v+=p.crit*9;
+ if(p.auto>0&&r.some(x=>['평타대응','공속대응'].includes(x)))v+=p.auto*8;
+ if(p.burst>0&&r.some(x=>['보호막','부활','생존'].includes(x)))v+=p.burst*2;
+ if(p.ap===0&&r.includes('마저'))v-=7;
+ if(p.ad===0&&r.includes('방어'))v-=3;
+ return v;
+}
+function archetype(){let n=myChampion.name,t=myChampion.tags||[],pos=document.getElementById('position').value;if(n==='마스터 이')return 'yi';if(pos==='UTILITY')return 'support';if(pos==='BOTTOM')return 'adc';if(t.includes('Marksman'))return 'adc';if(['다리우스','가렌','세트','아트록스','레넥톤','일라오이','모데카이저','올라프','우디르','나서스','잭스','피오라','리븐','카밀','이렐리아','볼리베어','트런들','신 짜오','자르반 4세'].includes(n))return 'fighter';if(t.includes('Fighter'))return 'fighter';if(t.includes('Mage'))return 'mage';if(t.includes('Tank'))return 'tank';if(t.includes('Assassin'))return 'assassin';return 'fighter'}
+// V8.8: 아무무 전용 정글 코어와 상황별 탱커 아이템
+Object.assign(items,{
+ liandry:{name:'리안드리의 고통',id:6653,roles:['주문력','체력','지속딜'],desc:'광역 지속 피해와 정글·한타 딜 보강'},
+ abyssal:{name:'심연의 가면',id:8020,roles:['마저','체력','마법증폭'],desc:'근접 마법 피해 조합에서 마법 저항력 감소'},
+ unending:{name:'끝없는 절망',id:6664,roles:['방어','체력','회복'],desc:'근접 난전에서 지속 생존 보조'},
+ jaksho:{name:'작쇼, 변화의 힘',id:6665,roles:['방어','마저','체력'],desc:'오래 버티는 한타에서 방어 능력 보강'},
+ frozen:{name:'얼어붙은 심장',id:3110,roles:['방어','공속대응'],desc:'기본 공격 중심 상대를 견제'},
+ rookern:{name:'케이닉 루컨',id:4401,roles:['마저','체력','보호막'],desc:'강한 마법 피해를 막는 보호막'},
+ rylai:{name:'라일라이의 수정홀',id:3116,roles:['주문력','체력','둔화'],desc:'마법 피해로 둔화 부여'}
+});
+Object.assign(items,{riftmaker:{name:'균열 생성기',id:4633,roles:['주문력','체력','지속딜'],desc:'오래 지속되는 전투에서 주문력 기반 피해 강화'},cosmic:{name:'우주의 추진력',id:4629,roles:['주문력','체력','기동'],desc:'스킬 적중 후 이동과 재진입에 도움'}});
+// V9.1: 근접 AD 전사의 공격 코어를 별도로 관리한다.
+Object.assign(items,{
+ blackcleaver:{name:'칠흑의 양날 도끼',id:3071,roles:['공격력','체력','방깎'],desc:'물리 피해 누적으로 적 방어력 감소, 체력 확보'},
+ shojin:{name:'쇼진의 창',id:3161,roles:['공격력','체력','스킬'],desc:'스킬 중심 교전에서 공격력·체력·스킬 활용'},
+ trinity:{name:'삼위일체',id:3078,roles:['공격력','체력','추격'],desc:'스킬과 기본 공격을 섞는 교전에서 추가 피해'},
+ sundered:{name:'갈라진 하늘',id:6610,roles:['공격력','체력','회복'],desc:'근접 교전에서 첫 공격과 회복 활용'}
+});
+function isAmumu(){return myChampion.name==='아무무'}
+// V7: 역할별 허용 목록. 아이템 역할 태그만 같다는 이유로 다른 직군 장비를 추천하지 않는다.
+const rolePools={
+ amumu:['sunfire','liandry','abyssal','unending','jaksho','thornmail','randuin','spirit','frozen','rookern','rylai','zhonya','riftmaker','cosmic','merboots','plated'],
+ yi:['kraken','bork','gu','wits','death','ga','shield','terminus','stride','hex','randuin','mercury','maw','scim','sterak','boots','merboots','plated','mortal'],
+ adc:['kraken','bork','gu','wits','ga','shield','collector','ie','ldr','mortal','mercury','maw','scim','terminus','boots','merboots','plated'],
+ mage:['malignance','shadowflame','rabadon','voidstaff','zhonya','morello','merboots','plated'],
+ tank:['heartsteel','sunfire','thornmail','randuin','spirit','sterak','ga','locket','merboots','plated'],
+ fighter:['stride','blackcleaver','shojin','trinity','sundered','hex','sterak','death','ga','maw','bork','wits','randuin','spirit','thornmail','merboots','plated'],
+ assassin:['youmuu','opportunity','serylda','edge','ga','maw','death','merboots','plated'],
+ support:['solstice','locket','redemption','knight','mikael','spirit','thornmail','randuin','merboots','plated']
+};
+const rolePresets={amumu:['liandry','sunfire','abyssal','thornmail','jaksho'],yi:['kraken','bork','gu','death','ga'],adc:['kraken','collector','ie','ldr','ga'],mage:['malignance','shadowflame','rabadon','voidstaff','zhonya'],tank:['sunfire','heartsteel','spirit','thornmail','randuin'],fighter:['stride','blackcleaver','sterak','shojin','death'],assassin:['youmuu','opportunity','serylda','edge','ga'],support:['solstice','locket','redemption','knight','mikael']};
+const roleAlternatives={
+ amumu:{sunfire:['liandry','unending','thornmail'],liandry:['rylai','abyssal','zhonya'],abyssal:['spirit','rookern','jaksho'],unending:['frozen','randuin','thornmail'],jaksho:['randuin','spirit','rookern']},
+ yi:{kraken:['gu','bork','terminus'],bork:['gu','wits','kraken'],gu:['terminus','wits','kraken'],death:['wits','maw','ga','randuin'],ga:['death','wits','mercury','maw']},
+ tank:{sunfire:['heartsteel','thornmail','randuin'],heartsteel:['randuin','spirit','thornmail'],spirit:['randuin','thornmail','sunfire'],thornmail:['randuin','sunfire','spirit'],randuin:['thornmail','spirit','sunfire']},
+ fighter:{stride:['trinity','sundered','hex'],blackcleaver:['shojin','sundered','trinity'],shojin:['blackcleaver','sundered','hex'],sundered:['blackcleaver','shojin','trinity'],sterak:['death','maw','sundered'],death:['ga','maw','randuin'],maw:['wits','sterak','ga'],ga:['death','sterak','maw']},
+ adc:{kraken:['bork','gu','collector'],collector:['ie','shield','ldr'],ie:['shield','collector','ldr'],ldr:['mortal','terminus','shield'],ga:['shield','maw','mercury']},
+ mage:{malignance:['shadowflame','rabadon','morello'],shadowflame:['rabadon','voidstaff','morello'],rabadon:['voidstaff','zhonya','shadowflame'],voidstaff:['morello','shadowflame','rabadon'],zhonya:['morello','rabadon','shadowflame']},
+ assassin:{youmuu:['opportunity','edge','serylda'],opportunity:['youmuu','edge','serylda'],serylda:['edge','youmuu','opportunity'],edge:['opportunity','youmuu','serylda'],ga:['edge','maw','death']},
+ support:{solstice:['locket','knight','redemption'],locket:['redemption','knight','mikael'],redemption:['mikael','locket','knight'],knight:['locket','redemption','mikael'],mikael:['redemption','locket','knight']}
+};
+function roleOf(){return isAmumu()?'amumu':archetype()}
+function permitted(k){let r=roleOf(),s=document.getElementById('style').value;if(r==='fighter'&&s==='ap'&&['riftmaker','rylai','cosmic','zhonya'].includes(k))return true;if(r==='fighter'&&s==='support'&&['locket','knight','redemption'].includes(k))return true;return (rolePools[r]||rolePools.fighter).includes(k)}
+function counterScore(k){let p=profile(),r=items[k].roles,score=0;if(p.ap>=1&&r.includes('마저'))score+=5;if(p.heal>=2&&r.includes('치감'))score+=5;if(p.tank>=2&&(r.includes('체력비례')||r.includes('관통')||r.includes('방관')||r.includes('마관')))score+=4;if(p.cc>=3&&(r.includes('해제')||r.includes('강인함')))score+=4;if(p.ap===0&&r.includes('마저'))score-=2;return score}
+// V8.8: 아무무는 슬롯의 목적에 맞는 후보만 사용. 다른 역할 아이템을 섞지 않음.
+// V8.8: 슬롯 역할에 맞춘 아무무 정글 예시. 신발은 별도 안내한다.
+const amumuSlotOptions={
+ liandry:['riftmaker','rylai','cosmic'],
+ sunfire:['unending','frozen','randuin','thornmail'],
+ abyssal:['rookern','spirit','jaksho'],
+ thornmail:['randuin','frozen','unending'],
+ jaksho:['unending','rookern','spirit','randuin'],
+ unending:['frozen','randuin','thornmail'],
+ rookern:['abyssal','spirit','jaksho'],
+ randuin:['thornmail','frozen','unending'],
+ spirit:['abyssal','rookern','jaksho'],
+ frozen:['randuin','thornmail','unending'],
+ rylai:['riftmaker','cosmic','liandry'],
+ riftmaker:['rylai','cosmic','liandry'],
+ cosmic:['rylai','riftmaker','liandry']
+};
+const amumuReasons={
+ liandry:'광역 지속 피해로 정글 정리와 긴 교전의 피해량을 보강',
+ sunfire:'근접한 적에게 광역 피해를 주면서 물리 방어력 확보',
+ abyssal:'근접 마법 피해 조합에서 마법 저항력과 마법 저항력 감소 효과 활용',
+ thornmail:'회복력이 강한 적이나 기본 공격 위협이 클 때 고려',
+ jaksho:'한타에서 오래 버틸 수 있을 때 방어 능력을 보강',
+ unending:'적과 오래 붙어 싸우는 난전에서 방어·회복 활용',
+ rookern:'상대 마법 피해가 강할 때 보호막으로 버티기',
+ spirit:'마법 피해에 대응하며 회복·보호막 효과를 활용',
+ frozen:'평타와 공격 속도 의존도가 높은 적을 상대',
+ randuin:'상대 치명타 피해 비중이 높을 때 선택',
+ rylai:'지속 마법 피해에 둔화를 더해 추격과 견제 보조',
+ riftmaker:'긴 교전에서 마법 피해 비중을 높이는 공격적 선택',
+ cosmic:'스킬 사용 후 기동성과 지속 교전 능력을 보완'
+};
+function amumuPriority(k){let p=profile(),names=enemyNames();let crit=['야스오','요네','징크스','진','케이틀린','트린다미어','사미라','드레이븐'];let aa=['마스터 이','베인','잭스','트린다미어','징크스','코그모'];let score={liandry:5,sunfire:5,abyssal:2,unending:2,jaksho:2,thornmail:0,rookern:0,spirit:0,frozen:0,randuin:0,rylai:1,riftmaker:1,cosmic:1}[k]||0;
+ if(p.ap>=2&&['abyssal','rookern','spirit','jaksho'].includes(k))score+=7;
+ if(p.ap>=3&&k==='rookern')score+=5;
+ if(p.heal>=1&&k==='thornmail')score+=5;
+ if(names.some(x=>crit.includes(x))&&k==='randuin')score+=8;
+ if(names.some(x=>aa.includes(x))&&k==='frozen')score+=8;
+ if(p.tank>=2&&['liandry','riftmaker'].includes(k))score+=4;
+ if(p.ap===0&&['abyssal','rookern','spirit'].includes(k))score-=6;
+ return score;
+}
+// V8.8: 코어 2칸 유지, 3~5번은 상대 조합에 따른 방어 선택.
+const amumuCore=['liandry','sunfire'];
+const extraMagicEnemies=['아무무','애니비아','아우렐리온 솔','아지르','카시오페아','다이애나','에코','엘리스','이블린','피들스틱','피즈','갈리오','그라가스','그웬','하이머딩거','흐웨이','카서스','카사딘','케넨','코그모','릴리아','리산드라','룰루','마오카이','밀리오','나미','니달리','오리아나','럼블','라이즈','세라핀','스웨인','신드라','탈리야','티모','트위스티드 페이트','바루스','벡스','빅토르','제라스','직스','질리언','조이','자이라','샤코','카이사','니코','누누와 윌럼프','자크'];
+const extraHealEnemies=['피오라','올라프','브라이어','니달리','나미','밀리오','세나','블라디미르','스웨인','일라오이','트런들','나서스','케인','피들스틱','그웬'];
+const critEnemies=['야스오','요네','징크스','진','케이틀린','트린다미어','사미라','드레이븐','아펠리오스'];
+const autoEnemies=['마스터 이','베인','잭스','트린다미어','징크스','코그모','칼리스타','트위치'];
+function threatProfile(){let n=enemyNames(),p=profile();return {...p,ap:n.filter(x=>ap.includes(x)||extraMagicEnemies.includes(x)).length,heal:n.filter(x=>heal.includes(x)||extraHealEnemies.includes(x)).length,crit:n.filter(x=>critEnemies.includes(x)).length,auto:n.filter(x=>autoEnemies.includes(x)).length,count:n.length}}
+function amumuChoices(){
+ const p=threatProfile(), chosen=['liandry','sunfire'];
+ // Every selected enemy contributes to the ranking; no >=2 threshold that hides single threats.
+ const base={unending:11,jaksho:10,thornmail:7,abyssal:6,rookern:4,randuin:5,frozen:5,spirit:4};
+ const weights={
+  unending: -p.ap*2+p.auto,
+  jaksho: p.ap+p.auto+p.crit,
+  thornmail: p.heal*14+p.auto*2,
+  abyssal: p.ap*12,
+  rookern: p.ap*11+(p.ap>=3?5:0),
+  randuin: p.crit*15,
+  frozen: p.auto*14,
+  spirit: p.ap*7
+ };
+ const keys=Object.keys(base).filter(k=>items[k]&&permitted(k));
+ keys.sort((a,b)=>(base[b]+weights[b])-(base[a]+weights[a]));
+ chosen.push(...keys.slice(0,3));
+ return chosen;
+}
+function amumuSlotCandidates(i){
+ const p=threatProfile();
+ // 상대를 아직 선택하지 않았어도 실제로 고려할 수 있는 기본 대안은 보여준다.
+ const base=i===0?['riftmaker','rylai','cosmic','abyssal']:
+   i===1?['unending','thornmail','frozen','randuin','abyssal','jaksho']:
+   i===2?['abyssal','rookern','spirit','unending','jaksho']:
+   i===3?['thornmail','randuin','frozen','rookern','unending','jaksho']:
+   ['thornmail','rookern','randuin','frozen','unending','spirit','abyssal','jaksho'];
+ const score=k=>{
+  let n={abyssal:4,thornmail:3,jaksho:4,unending:3,rookern:2,spirit:1,randuin:2,frozen:2,riftmaker:3,rylai:3,cosmic:2}[k]||0;
+  if(p.count===0)return n;
+  if(k==='abyssal')n+=p.ap*3;
+  if(k==='rookern')n+=p.ap*4;
+  if(k==='spirit')n+=p.ap*2;
+  if(k==='thornmail')n+=p.heal*5;
+  if(k==='randuin')n+=p.crit*5;
+  if(k==='frozen')n+=p.auto*5;
+  if(k==='unending')n+=Math.max(0,3-p.ap);
+  if(k==='jaksho')n+=2;
+  if(k==='riftmaker')n+=Math.max(0,3-p.ap)+p.auto;
+  if(k==='rylai')n+=p.auto;
+  if(k==='cosmic')n+=p.ap;
+  if(p.ap===0&&['rookern','spirit','abyssal'].includes(k))n-=3;
+  return n;
+ };
+ return base.filter(k=>items[k]&&permitted(k)&&!current.includes(k)).sort((a,b)=>score(b)-score(a));
+}
+// V8.8: 슬롯 목적을 먼저 지키고, 상대 조합으로 그 안에서 순서를 변경한다.
+const footwear=new Set(['boots','merboots','plated']);
+const slotFamilies={
+ yi:[['kraken','bork','gu','terminus','hex'],['bork','gu','kraken','terminus','wits'],['gu','terminus','wits','bork','kraken'],['death','wits','maw','randuin','sterak','ga'],['ga','maw','mercury','sterak','death','randuin']],
+ adc:[['kraken','bork','gu','collector'],['collector','bork','gu','shield'],['ie','shield','collector','scim'],['ldr','mortal','terminus','shield'],['ga','maw','shield','mercury','scim']],
+ mage:[['malignance','shadowflame','rabadon'],['shadowflame','morello','voidstaff'],['rabadon','voidstaff','shadowflame'],['voidstaff','morello','zhonya'],['zhonya','morello','rabadon']],
+ tank:[['sunfire','heartsteel','thornmail'],['heartsteel','sunfire','randuin'],['spirit','randuin','thornmail'],['thornmail','randuin','sunfire'],['randuin','spirit','thornmail']],
+ fighter:[['stride','trinity','sundered'],['blackcleaver','shojin','sundered'],['sterak','shojin','blackcleaver'],['shojin','sundered','death','maw'],['death','ga','maw','randuin']],
+ assassin:[['youmuu','opportunity','edge'],['opportunity','edge','youmuu'],['serylda','edge','opportunity'],['edge','serylda','youmuu'],['ga','maw','death']],
+ support:[['solstice','locket','redemption'],['locket','knight','redemption'],['redemption','mikael','locket'],['knight','locket','mikael'],['mikael','redemption','knight']]
+};
+// V8.8: 슬롯 역할을 먼저 검증하고, 그 안에서 상대 조합별 후보를 정렬.
+const yiOffense=['kraken','bork','gu','terminus','hex','wits'];
+const yiDefense=['death','maw','randuin','sterak','ga','mercury','wits'];
+function alternativePool(key,i){
+ if(roleOf()==='amumu')return amumuSlotCandidates(i);
+ const role=roleOf(),p=advancedThreat(),style=document.getElementById('style').value;
+ const family=(slotFamilies[role]||slotFamilies.fighter)[i]||[];
+ // V9.3: 전사 대안은 현재 선택한 스타일과 슬롯 목적을 우선한다.
+ // 공격 슬롯에 순수 방어 아이템이 끼어들지 않도록 별도 후보군을 사용한다.
+ if(role==='fighter'){
+  const offense=['stride','blackcleaver','shojin','sundered','trinity','hex','bork'];
+  const survival=['sterak','death','maw','ga','randuin','spirit','thornmail'];
+  const apOffense=['riftmaker','rylai','cosmic'];
+  const supportItems=['locket','knight','redemption'];
+  let candidates;
+  if(style==='ap')candidates=i<3?apOffense:['zhonya','sterak','death'];
+  else if(style==='support')candidates=i<3?supportItems:['sterak','death','ga'];
+  else if(style==='tank')candidates=i<2?['sterak','death','ga']:['randuin','spirit','thornmail','maw','ga','sterak','death'];
+  else if(style==='ad')candidates=i<4?offense:survival;
+  else if(style==='assassin'||style==='burst')candidates=i<4?offense:survival;
+  else candidates=i<3?offense:survival;
+  return candidates.filter(k=>items[k]&&permitted(k)&&k!==key&&!current.includes(k)&&!footwear.has(k))
+   .sort((a,b)=>strategicScore(b)-strategicScore(a)||candidates.indexOf(a)-candidates.indexOf(b));
+ }
+
+ const curated=(roleAlternatives[role]||{})[key]||[];
+ // 마스터 이 공격 슬롯에는 공격/적중 아이템만, 생존 슬롯에는 방어 아이템만.
+ let all=role==='yi'?(i<3?yiOffense:yiDefense):role==='fighter'?[...new Set([...family,...curated,...(i<3?['stride','blackcleaver','shojin','sundered','trinity','hex','bork']:['sterak','death','maw','ga','randuin','spirit','thornmail','sundered'])])]:[...new Set([...family,...curated])];
+ const score=k=>{
+  let n=family.includes(k)?4:0;
+  if(role==='yi'){
+   if(i<3){
+    if(p.tank>=1&&['bork','terminus','gu'].includes(k))n+=p.tank*12;
+    if(p.ap>=2&&k==='wits')n+=p.ap*13;
+    if(p.ad>=2&&['kraken','bork'].includes(k))n+=p.ad*4;
+    if(style==='chase'&&['gu','terminus'].includes(k))n+=13;
+    if(style==='burst'&&k==='kraken')n+=13;
+    if(k==='hex')n+=2;
+   }else{
+    if(p.ap>=2&&['maw','wits','mercury'].includes(k))n+=p.ap*13;
+    if(p.ad>=2&&['death','ga','randuin'].includes(k))n+=p.ad*11;
+    if(p.crit>=1&&k==='randuin')n+=p.crit*22;
+    if(p.cc>=2&&k==='mercury')n+=p.cc*10;
+    if(style==='tank'&&['sterak','death'].includes(k))n+=14;
+   }
+  }else n+=strategicScore(k);
+  return n;
+ };
+ return all.filter(k=>items[k]&&permitted(k)&&k!==key&&!current.includes(k)&&!footwear.has(k))
+   .sort((a,b)=>score(b)-score(a)||all.indexOf(a)-all.indexOf(b));
+}
+
+// V8.8: 전체 슬롯을 함께 고려하여 대안 중복을 막는다.
+function allocateAlternatives(){
+ const pools=current.map((key,i)=>alternativePool(key,i));
+ const allocated=current.map(()=>[]), used=new Set(current);
+ // 슬롯마다 첫 번째 후보를 한 번씩, 두 번째 후보를 한 번씩 공평하게 배분.
+ for(let round=0;round<2;round++){
+  for(let i=0;i<current.length;i++){
+   const candidate=pools[i].find(k=>!used.has(k));
+   if(candidate){allocated[i].push(candidate);used.add(candidate)}
+  }
+ }
+ return {pools,allocated};
+}
+function situationalReason(k){
+ const p=advancedThreat();
+ if(p.ap>=2&&['wits','maw','mercury'].includes(k))return '마법 피해가 많은 상대를 고려한 대안';
+ if(p.crit>0&&k==='randuin')return '치명타 피해 위협에 대응하는 대안';
+ if(p.heal>0&&['mortal','thornmail','morello'].includes(k))return '회복형 챔피언을 고려한 치유 감소 대안';
+ if(p.tank>0&&['bork','terminus','gu'].includes(k))return '튼튼한 상대를 오래 공격하는 상황에 맞춘 대안';
+ if(p.ad>=2&&['death','ga','sterak'].includes(k))return '물리 피해가 많은 상대에 대비한 생존 대안';
+ return items[k].desc;
+}
+
+function matchupAdvice(){
+ const p=advancedThreat(),style=document.getElementById('style').value;
+ const tags=[];
+ if(p.ap>=2)tags.push('마법 피해 위협 → 마법 저항력 대안 우선');
+ if(p.ad>=2)tags.push('물리 피해 위협 → 방어력·생존 대안 우선');
+ if(p.heal>0)tags.push('회복형 상대 → 치유 감소 후보 검토');
+ if(p.tank>0)tags.push('탱커 상대 → 지속 피해·방어 관통 후보 검토');
+ if(p.cc>=2)tags.push('군중 제어 다수 → 해제·생존 후보 검토');
+ if(p.crit>0)tags.push('치명타 위협 → 치명타 대응 방어 후보 검토');
+ if(style==='chase')tags.push('연속 공격 스타일 → 공속·적중 효과 선호');
+ if(style==='tank')tags.push('탱커 스타일 → 생존력 높은 대안 선호');
+ return tags.length?tags.join(' / '):'상대 조합을 선택하면 우선 고려할 대안이 표시돼.';
+}
+
+function recommend(){
+ let a=roleOf(),p=advancedThreat(),arr=[...(rolePresets[a]||rolePresets.fighter)],s=document.getElementById('style').value;
+ if(a==='amumu')arr=amumuChoices();
+ else if(a==='yi'){
+   if(s==='tank')arr=['bork','gu','wits','death','ga'];
+   else if(s==='chase')arr=['kraken','gu','bork','death','ga'];
+   else if(s==='burst')arr=['kraken','bork','gu','shield','ga'];
+   // 공격 핵심 1~3번은 상대 입력 시에도 고정. 대응은 대안에서 표시.
+   if(p.ap>=2)arr[3]='wits';
+   else if(p.crit>=1)arr[3]='randuin';
+   else if(p.burst>=2)arr[3]='death';
+   // 치유 감소 필요성은 대안 설명에서 안내하며 공격 핵심을 임의 교체하지 않음.
+   if(p.cc>=2)arr[4]='mercury';
+   else if(p.ap>=3)arr[4]='maw';
+ }
+ else if(a==='adc'){
+   if(s==='tank')arr=['bork','shield','wits','ga','maw'];else if(s==='burst')arr=['collector','ie','ldr','shield','ga'];else if(s==='chase')arr=['kraken','gu','bork','terminus','ga'];
+   if(p.heal>=1)arr[3]='mortal';else if(p.tank>=1)arr[3]='ldr';
+   if(p.ap>=2)arr[4]='maw';else if(p.burst>=2)arr[4]='shield';
+ }
+ else if(a==='tank'){
+   if(p.ap>=2)arr[2]='spirit';
+   if(p.crit>=1)arr[4]='randuin';
+   if(p.heal>=1)arr[3]='thornmail';
+ }
+ else if(a==='fighter'){
+   // 전사(공격·생존)는 공격 3개 + 생존 2개를 기본으로 사용한다.
+   if(s==='tank')arr=['sterak','death','randuin','spirit','ga'];
+   else if(s==='ad')arr=['stride','blackcleaver','shojin','sundered','sterak'];
+   else if(s==='ap')arr=['riftmaker','rylai','cosmic','zhonya','sterak'];
+   else if(s==='support')arr=['locket','knight','redemption','sterak','death'];
+   else if(s==='assassin')arr=['trinity','sundered','blackcleaver','shojin','ga'];
+   else if(s==='chase')arr=['stride','trinity','bork','blackcleaver','sterak'];
+   else if(s==='burst')arr=['trinity','sundered','shojin','blackcleaver','death'];
+   else arr=['stride','blackcleaver','shojin','sterak','death'];
+   // 상대에 따라 마지막 생존 슬롯을 조정하되 공격 핵심을 방템으로 덮지 않는다.
+   if(s!=='ap'&&s!=='support'){if(p.ap>=2)arr[4]='maw';else if(p.crit>=1)arr[4]='randuin';else if(p.heal>=2&&s==='tank')arr[4]='thornmail';}
+ }
+ else if(a==='mage'){
+   if(s==='tank')arr=['zhonya','morello','malignance','voidstaff','rabadon'];else if(s==='burst')arr=['shadowflame','rabadon','voidstaff','malignance','zhonya'];
+   if(p.heal>=1)arr[3]='morello';
+   else if(p.ap>=2)arr[4]='zhonya';
+ }
+ else if(a==='assassin'){
+   if(p.ap>=2)arr[4]='maw';
+   if(p.ad>=3)arr[4]='death';
+ }
+ else if(a==='support'){
+   if(p.ap>=2)arr[3]='mikael';
+   if(p.ad>=3)arr[4]='knight';
+ }
+ let unique=[...new Set(arr.filter(k=>items[k]&&permitted(k)))];
+ for(const k of (rolePresets[a]||rolePresets.fighter))if(unique.length<5&&permitted(k)&&!unique.includes(k))unique.push(k);
+ for(const k of (rolePools[a]||[]))if(unique.length<5&&!unique.includes(k))unique.push(k);
+ return unique.slice(0,5);
+}
+
+function itemTooltip(key){let it=items[key],data=itemDetails[it.id];if(!data)return `${it.name} — ${it.desc} (공식 데이터 연결 시 설명 표시)`;let temp=document.createElement('div');temp.innerHTML=data.description||'';return `${data.name}\n${temp.textContent||''}\n가격: ${data.gold?.total||'정보 없음'}G`}
+function itemimg(key){let it=items[key];let ok=!Object.keys(itemDetails).length||!!itemDetails[it.id];return ok?`<img class="itemicon" loading="lazy" src="https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/item/${it.id}.png" alt="${esc(it.name)}" onerror="this.style.visibility='hidden'">`:`<span class="itemicon" style="display:grid;place-items:center;font-size:24px" title="공식 이미지 ID 확인 필요">🛡️</span>`;}
+function esc(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function why(k){if(roleOf()==='amumu')return amumuReasons[k]||items[k].desc;let p=profile(),it=items[k];if(roleOf()==='amumu'){
+ const reasons={liandry:'광역 스킬로 지속 피해를 누적하는 핵심 공격 아이템',sunfire:'근접 정글 캠프 정리와 물리 방어에 도움',abyssal:'마법 피해 상대를 버티며 주변 적 마법 저항력 감소',thornmail:'평타 기반 물리 피해 및 회복 효과 대응',jaksho:'한타에서 오래 버틸 때 방어 능력 보강',unending:'근접 난전에서 생존 보조',rookern:'상대 마법 폭딜이 강할 때 보호막으로 대응',spirit:'마법 피해 대응과 회복 효과 보조',frozen:'평타 비중이 큰 상대의 공격 속도 견제',randuin:'치명타 위협이 큰 상대 대응',rylai:'스킬 적중 시 둔화로 추격과 견제',riftmaker:'긴 전투에서 주문력 기반 지속 피해 강화',cosmic:'스킬 사용 후 이동과 재진입 보조'};return reasons[k]||it.desc;
+ }return p.tank>=2&&it.roles.includes('체력비례')?'탱커가 많은 조합에서 체력 비례 피해 활용':p.ap>=2&&it.roles.includes('마저')?'마법 피해 비중이 높은 조합 대응':p.heal>=2&&it.roles.includes('치감')?'회복 능력이 있는 적 다수 대응':p.cc>=3&&it.roles.includes('해제')?'일부 군중 제어 대응':it.desc}
+function altWhy(main,k){if(roleOf()==='amumu')return amumuReasons[k]||items[k].desc;if(roleOf()==='amumu')return `선택 이유: ${why(k)}. 현재 ${items[main].name} 대신 사용하면 역할과 피해 구성이 달라져.`;let a=items[main],b=items[k],common=a.roles.filter(r=>b.roles.includes(r));return common.length?`공통 역할: ${common.join('·')} / 차이: ${b.desc}`:`다른 방향의 대안: ${b.desc} (동일 효과 대체는 아님)`}
+function slotExplanation(key,i){if(roleOf()!=='amumu')return why(key);
+ if(i===0)return '지속 마법 피해 중심의 기본 추천. 대안은 피해 방식이나 생존력에 따라 비교할 수 있어.';
+ if(i===1)return '근접 교전과 물리 방어 중심의 기본 추천. 상대 위협에 따라 이 슬롯도 교체 가능해.';
+ const p=threatProfile();return `${amumuReasons[key]||items[key].desc} · ${p.count?'상대 '+p.count+'명 기준, 마법 피해 '+p.ap+'명 / 회복 '+p.heal+'명 / 치명타 '+p.crit+'명 / 평타 위협 '+p.auto+'명 참고':'상대 정보 없음 · 기본 빌드 표시 중'}`;
+}
+function candidateExplanation(key){let p=threatProfile();if(p.count===0)return (amumuReasons[key]||items[key].desc)+' · 상대 챔피언 선택 시 우선순위 변경';let map={abyssal:`마법 피해 위협 ${p.ap}명: 근접 마법 피해 조합에 맞춘 마법 저항력`,rookern:`마법 피해 위협 ${p.ap}명: 강한 마법 피해에 보호막으로 대응`,spirit:`마법 피해 위협 ${p.ap}명: 마법 저항력과 회복 효과 보강`,thornmail:`회복 위협 ${p.heal}명: 회복 감소가 필요할 때 고려`,randuin:`치명타 위협 ${p.crit}명: 치명타 피해 대응`,frozen:`평타 위협 ${p.auto}명: 공격 속도 중심 상대 대응`,unending:'오래 붙어 싸우는 근접 난전에서 생존력 보완',jaksho:'긴 한타에서 방어 능력을 고르게 보강'};return map[key]||items[key].desc}
+function renderBuild(){let p=advancedThreat();document.getElementById('matchup').innerHTML=`<b>📊 상대 조합 분석</b><div class="small">상대 ${p.count}명 · 마법 위협 ${p.ap} · 물리 위협 ${p.ad} · 회복 ${p.heal} · CC ${p.cc} · 치명타 ${p.crit} · 평타 ${p.auto}</div><div class="why">${p.count?esc(matchupAdvice()):'상대 챔피언을 입력하면 빌드가 상황에 따라 달라져.'}</div>`;const allocation=allocateAlternatives();document.getElementById('build').innerHTML=current.map((key,i)=>{let it=items[key];if(!it)return '';let pool=allocation.pools[i],more=expanded.has(i),shown=more?[...allocation.allocated[i],...pool.filter(k=>!allocation.allocated[i].includes(k))].slice(0,6):allocation.allocated[i],core=roleOf()==='amumu'&&i<2;return `<div class="buildrow"><div class="mainitem" title="${esc(itemTooltip(key))}"><div class="tag">${i+1}번째 메인 아이템${core?' · 핵심 추천 (교체 가능)':''}</div><div class="itemhead">${itemimg(key)}<div><b>${esc(it.name)}</b><div class="small">${esc(it.roles.join(' · '))}</div></div></div><div class="why">${esc(it.desc)}</div><div class="why good">추천 이유: ${esc(slotExplanation(key,i))}</div></div><div class="alternatives">${shown.length?shown.map((k,j)=>`<div class="alt" title="${esc(itemTooltip(k))}"><div class="tag">${threatProfile().count?'상황별 대안':'기본 대안'} ${j+1}</div><div class="itemhead">${itemimg(k)}<b>${esc(items[k].name)}</b></div><div class="why">${esc(roleOf()==='amumu'?candidateExplanation(k):situationalReason(k))}</div><button class="gold" style="margin-top:8px" data-swap="${i}:${k}">이 대안으로 교체</button></div>`).join(''):'<div class="alt"><b class="good">현재 빌드 유지 추천</b><div class="why">역할이 맞는 중복 없는 대안이 부족해. 다른 슬롯 대안도 확인해 봐.</div></div>'}${pool.length>allocation.allocated[i].length?`<button data-more="${i}">${more?'대안 접기':'다른 대안 '+(pool.length-allocation.allocated[i].length)+'개 더 보기'}</button>`:''}</div></div>`}).join('');document.querySelectorAll('[data-swap]').forEach(b=>b.onclick=()=>{let [i,k]=b.dataset.swap.split(':');i=Number(i);if(!permitted(k)||current.includes(k)||(roleOf()==='amumu'&&!amumuSlotCandidates(i).includes(k)))return;current[i]=k;renderBuild()});document.querySelectorAll('[data-more]').forEach(b=>b.onclick=()=>{let i=+b.dataset.more;expanded.has(i)?expanded.delete(i):expanded.add(i);renderBuild()})}
+
+function renderChamps(){let root=document.getElementById('champs');root.innerHTML=Array.from({length:5},(_,i)=>`<div class="champbox"><label>상대 ${i+1}번 챔피언</label><div class="flex" style="flex-wrap:nowrap"><img class="avatar" id="avatar${i}" style="display:none"><input id="champ${i}" placeholder="이름 일부 입력 (예: 마)" autocomplete="off" value="${selected[i]?esc(selected[i].name):''}"></div><div class="dropdown" id="suggest${i}" style="display:none"></div></div>`).join('');for(let i=0;i<5;i++){let inp=document.getElementById('champ'+i),drop=document.getElementById('suggest'+i);function update(){let q=inp.value.trim().toLowerCase();selected[i]=champions.find(x=>x.name===inp.value)||null;current=recommend();expanded.clear();renderBuild();renderRuneInfo();let matches=q?champions.filter(c=>c.name.toLowerCase().includes(q)&&!selected.some((s,j)=>j!==i&&s&&s.name===c.name)).slice(0,16):[];drop.innerHTML=matches.map(c=>`<div class="choice" data-name="${esc(c.name)}">${c.id?`<img class="avatar" src="https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${c.id}.png">`:''}${esc(c.name)}</div>`).join('');drop.style.display=matches.length?'block':'none';drop.querySelectorAll('[data-name]').forEach(el=>el.onclick=()=>{selected[i]=champions.find(c=>c.name===el.dataset.name);inp.value=selected[i].name;drop.style.display='none';updateAvatar(i);current=recommend();expanded.clear();renderBuild();renderRuneInfo()});updateAvatar(i)}inp.oninput=update;inp.onfocus=()=>{let q=inp.value.trim().toLowerCase();if(q)update()};inp.onblur=()=>setTimeout(()=>drop.style.display='none',180)} }
+function updateAvatar(i){let a=document.getElementById('avatar'+i),c=selected[i];a.style.display=c&&c.id?'block':'none';if(c&&c.id)a.src=`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${c.id}.png`}
+const runeIconFiles={'치명적 속도':'Precision/LethalTempo/LethalTempoTemp','승전보':'Precision/Triumph','전설: 민첩함':'Precision/LegendAlacrity/LegendAlacrity','최후의 일격':'Precision/CoupDeGrace','피의 맛':'Domination/TasteOfBlood/GreenTerror_TasteOfBlood','궁극의 사냥꾼':'Domination/UltimateHunter/UltimateHunter','폭풍의 결집':'Sorcery/GatheringStorm/GatheringStorm','액시옴 비전 마법사':'Sorcery/AxiomArcanist/AxiomArcanist','기민함':'Sorcery/Celerity/CelerityTemp','깨달음':'Sorcery/Transcendence/Transcendence','비열한 한 방':'Domination/CheapShot/CheapShot'};function runeIcon(r){let path=runeIconFiles[r.name];return path?`<img class="runeicon" src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${path}.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none;font-size:26px">${r.icon}</span>`:`<span>${r.icon}</span>`}
+const runes=[{name:'치명적 속도',icon:'⚡',good:'기본 공격을 오래 이어갈 수 있는 근접 교전에서 유리',bad:'순간 폭딜만으로 끝나는 교전에서는 중첩 활용이 제한됨',kind:'tank'}, {name:'승전보',icon:'💚',good:'킬 관여가 이어지는 난전에서 체력 회복',bad:'킬 관여가 없으면 회복하지 않음',kind:'fight'}, {name:'전설: 민첩함',icon:'🏹',good:'기본 공격 중심 빌드와 잘 맞음',bad:'군중 제어를 직접 해제하지 않음',kind:'fight'}, {name:'최후의 일격',icon:'🎯',good:'체력이 낮은 적 마무리에 도움',bad:'체력이 높은 적에게 같은 보너스가 적용되지 않음',kind:'fight'}, {name:'피의 맛',icon:'🩸',good:'적 챔피언과의 짧은 교전에서 회복',bad:'계속 공격한다고 매 타격마다 회복하지 않음',kind:'fight'}, {name:'궁극의 사냥꾼',icon:'😈',good:'고유 처치 관여를 쌓아 궁극기 재사용 대기시간 감소',bad:'궁극기 공격 속도·이동 속도 자체를 높이지 않음',kind:'fight'}, {name:'폭풍의 결집',icon:'🌪️',good:'시간이 지날수록 적응형 능력치 증가',bad:'초반 교전에서 즉각적인 성장 효과가 적음',kind:'late'}, {name:'액시옴 비전 마법사',icon:'🔮',good:'처치 관여 시 남은 궁극기 재사용 대기시간 감소',bad:'마이 궁극기의 공격 속도·이동 속도 증가량은 직접 강화하지 않음',kind:'fight'}, {name:'기민함',icon:'👟',good:'추격·이동 속도 보너스 활용',bad:'공격 속도를 직접 높이지 않음',kind:'chase'}, {name:'깨달음',icon:'⌛',good:'일반 스킬 가속 활용',bad:'궁극기 가속을 직접 제공하지 않음',kind:'fight'}, {name:'비열한 한 방',icon:'🗡️',good:'둔화·이동 방해 효과를 걸 수 있는 상황에서 추가 피해',bad:'둔화 없이 기본 공격만으로 항상 발동하지 않음',kind:'chase'}];let activeRune='액시옴 비전 마법사';
+function runeSuggestions(){let a=archetype(),pos=document.getElementById('position').value;let map={yi:['치명적 속도','승전보','전설: 민첩함','최후의 일격','피의 맛','궁극의 사냥꾼'],adc:['치명적 속도','승전보','전설: 민첩함','최후의 일격'],mage:['폭풍의 결집','깨달음'],tank:['승전보','전설: 민첩함'],fighter:['승전보','최후의 일격'],assassin:['최후의 일격','궁극의 사냥꾼'],support:['깨달음','기민함']};let arr=map[a]||[];document.getElementById('runerecommend').innerHTML=`<b>추천 방향:</b> ${esc(myChampion.name)} · ${esc(document.getElementById('position').selectedOptions[0].text)} → ${arr.map(esc).join(' / ')}<br><span class="small">※ 현재 등록된 룬 후보 안에서의 예시이며, 실제 챔피언별 최적 룬 페이지 전체를 구현한 것은 아니야.</span>`;return arr}
+function renderRunes(){let rec=runeSuggestions();document.getElementById('runes').innerHTML=runes.map((r,i)=>`<button class="runecard" data-rune="${i}" style="text-align:left;border-color:${r.name===activeRune?'#f1c96f':'#4c6887'}"><div class="flex">${runeIcon(r)}<b>${r.name}</b>${rec.includes(r.name)?'<span class="tag">추천</span>':''}</div><div class="small">${r.good}</div></button>`).join('');document.querySelectorAll('[data-rune]').forEach(b=>b.onclick=()=>{activeRune=runes[+b.dataset.rune].name;renderRunes();renderRuneInfo()})}
+function renderRuneInfo(){let r=runes.find(x=>x.name===activeRune),n=enemyNames(),p=profile(),isYi=myChampion.name==='마스터 이';let targets=n.filter(x=>r.kind==='tank'?tanks.includes(x):r.kind==='chase'?cc.includes(x)||!tanks.includes(x):r.kind==='late'?true:true);let targetText=!n.length?'상대 챔피언을 입력하면 해당 조합을 기준으로 설명해 줄게.':targets.length?targets.join(', '):'입력한 상대 중 특정 챔피언에만 유리하다고 단정하기 어려움';document.getElementById('runeinfo').innerHTML=`<h3>${r.icon} ${r.name}</h3><p class="good">✔ 기대할 수 있는 효과: ${r.good}</p><p class="bad">✘ 적용되지 않거나 제한되는 부분: ${r.name==='액시옴 비전 마법사'&&!isYi?'궁극기 직접 피해·회복·보호막 증폭은 해당 효과가 있는 챔피언에게만 적용. 이동·공속 버프는 직접 강화되지 않음.':r.bad}</p><hr><b>상대 조합 참고 (확정 상성 아님)</b><p>${esc(targetText)}</p><div class="small">주의: 상대 챔피언 추천은 룬의 일반적인 활용 조건을 기준으로 한 참고 설명이며, 확정적인 카운터 관계나 승률 데이터가 아님.</div>`}
+function renderPlayer(){let inp=document.getElementById('mychamp'),drop=document.getElementById('mysuggest'),a=document.getElementById('myavatar');function avatar(){a.style.display=myChampion.id?'block':'none';if(myChampion.id)a.src=`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${myChampion.id}.png`}function update(){let q=inp.value.trim().toLowerCase(),matches=q?champions.filter(c=>c.name.toLowerCase().includes(q)).slice(0,20):[];drop.innerHTML=matches.map(c=>`<div class="choice" data-id="${esc(c.id)}" data-name="${esc(c.name)}"><img class="avatar" src="https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${c.id}.png">${esc(c.name)}</div>`).join('');drop.style.display=matches.length?'block':'none';drop.querySelectorAll('[data-id]').forEach(el=>el.onclick=()=>{myChampion=champions.find(c=>c.id===el.dataset.id&&c.name===el.dataset.name)||champions.find(c=>c.name===el.dataset.name)||myChampion;inp.value=myChampion.name;drop.style.display='none';avatar();refreshAll()})}inp.oninput=update;inp.onfocus=()=>{let q=inp.value.trim().toLowerCase();if(q)update()};inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();let found=champions.find(c=>c.name===inp.value.trim());if(found){myChampion=found;drop.style.display='none';avatar();refreshAll();}}};inp.onblur=()=>setTimeout(()=>{drop.style.display='none';let found=champions.find(c=>c.name===inp.value.trim());if(found&&myChampion.name!==found.name){myChampion=found;avatar();refreshAll();}},180);avatar()}
+function refreshAll(){shuffleTips();current=recommend();expanded.clear();renderBuild();renderRunes();renderRuneInfo();renderTip();document.getElementById('playerstatus').textContent=`선택: ${myChampion.name} / ${document.getElementById('position').selectedOptions[0].text} · 판정 역할: ${roleOf()} · 스타일: ${document.getElementById('style').selectedOptions[0].text} · 추천: ${current.map(k=>items[k]?.name||k).join(' → ')}${['ap','support'].includes(document.getElementById('style').value)&&roleOf()==='fighter'?' · ⚠️ 실전 비추천 재미용 실험 빌드':''}`}
+
+let tipIndex=0;
+let shuffledTips=[];
+let tipsUntilAd=2+Math.floor(Math.random()*4);
+let tipsSinceAd=0;
+let tipSlideIsAd=false;
+function resetTipRotation(){tipsSinceAd=0;tipsUntilAd=2+Math.floor(Math.random()*4);tipSlideIsAd=false;}
+function shuffleTips(){shuffledTips=getTips().slice().sort(()=>Math.random()-.5);tipIndex=0;resetTipRotation();}
+function getTips(){let pos=document.getElementById('position').value,style=document.getElementById('style').value,n=myChampion.name;let common=[
+['죽고 나서 싸우지 말기','아군이 먼저 쓰러졌다면 숫자를 확인해. 4대5 싸움은 피하는 편이 좋아.'],
+['킬보다 오브젝트','킬을 얻었으면 바로 용·전령·타워 중 가져갈 수 있는 목표를 확인해.'],
+['미니맵 5초 습관','라인과 정글 동선을 이동할 때마다 미니맵을 짧게 확인해.'],
+['적 핵심 스킬 확인','상대의 기절·속박·넉백이 빠졌는지 보고 진입해.'],
+['무리한 추격 멈추기','상대가 포탑 뒤로 빠졌다면 추격보다 생존과 다음 목표가 이득일 수 있어.'],
+['죽은 이유 한 가지 기록','매 판 가장 아쉬운 데스 한 번만 떠올리고 다음 판에서 같은 실수를 줄여 봐.'],
+ ['시야 없는 강가 주의','강가에 시야가 없다면 오브젝트를 바로 시작하지 말고 먼저 안전을 확인해.'],
+ ['집 타이밍 잡기','큰 오브젝트 전에 체력·마나·아이템을 정비해.'],
+ ['핑은 짧고 정확하게','적 정글 위치나 오브젝트 의도를 짧은 핑으로 알려줘.'],
+ ['연패 중 판단 점검','연패 중에는 한 판 쉬고 반복되는 실수 한 가지를 확인해.'],
+ ['스펠 시간 확인','적 점멸이 빠졌다면 다음 교전 기회를 계획해.'],
+ ['상대 성장 확인','킬 수만 보지 말고 상대 아이템 완성 상태를 확인해.'],
+ ['오브젝트 앞 인원 확인','용 앞에 적이 먼저 모였다면 무리한 진입보다 다음 선택지를 찾아.'],
+ ['미니언 웨이브 확인','타워를 치기 전 아군 미니언이 들어오는지 확인해.'],
+ ['바론 시야 확보','바론을 시작하기 전에 적 정글 위치와 주변 시야를 확인해.'],
+ ['교전 후 리셋','한타 승리 후 체력이 부족하면 욕심보다 귀환이 안전할 수 있어.']];
+let custom=n==='마스터 이'?[['선알파 금지','마스터 이는 Q를 먼저 쓰기보다 상대 CC 회피·추격·마무리에 남겨 두면 좋아.'],['궁극기 전에 진입각 확인','상대 핵심 CC와 아군 합류 위치를 확인하고 궁을 켜.'],['킬 후 타워 다이브 주의','킬을 따도 포탑에서 죽으면 이득이 사라질 수 있어. 탈출 경로부터 생각해.']]:[];
+let byPos={JUNGLE:[['정글 캠프와 갱킹 균형','성공 확률 낮은 갱을 반복하기보다 캠프·시야·오브젝트 시간을 관리해.']],TOP:[['상대 정글 위치 확인','라인을 길게 밀기 전에 적 정글의 마지막 위치를 확인해.']],MID:[['로밍 전에 라인 정리','미니언을 타워에 밀어 넣고 움직이면 손해를 줄이기 좋아.']],BOTTOM:[['딜보다 생존 우선','원딜은 오래 살아서 지속 피해를 넣는 게 중요해.']],UTILITY:[['시야는 혼자 깊게 가지 않기','시야 확보도 팀과 함께 움직일 때 안전해.']]};
+let byStyle={tank:[['탱커의 역할','무조건 먼저 죽는 게 아니라 아군 딜러가 공격할 시간을 벌어 주는 게 목표야.']],ad:[['물리 딜러 포지셔닝','딜을 넣을 수 있는 가장 안전한 거리부터 찾아.']],ap:[['마법 딜러 스킬 관리','핵심 스킬을 빗맞히면 잠시 뒤로 빠져 재사용 대기시간을 기다려.']],burst:[['치명타는 확률','한 번의 치명타에 기대기보다 안전한 공격 횟수를 확보해.']],chase:[['공격 속도는 생존이 전제','평타 한 대 더 치려고 CC 범위에 들어가지 마.']],assassin:[['암살 대상 고르기','앞라인보다 생존기가 빠진 적 핵심 딜러를 노려.']],support:[['힐러의 위치','아군을 살리려다가 함께 죽지 않도록 사거리와 시야를 확인해.']],balanced:[['교전과 생존 균형','싸움을 길게 할수록 유리한지, 빠져야 하는지 판단해.']]};return [...custom,...(byPos[pos]||[]),...(byStyle[style]||[]),...common]}
+function renderTip(){
+ let box=document.getElementById('coachtip');if(!box)return;
+ // 첫 두 장은 팁, 세 번째는 광고. 등록 상품이 없다면 팁을 계속 표시.
+ let ads=getShoeAds(),isAd=ads.length>0 && tipSlideIsAd;
+ if(isAd){
+  let a=ads[Math.floor(Math.random()*ads.length)];
+  box.innerHTML=`<div class="tag">광고 · 쿠팡파트너스</div><h3>👟 오늘의 러닝화 추천</h3><p class="small">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p><div class="flex">${a.image?`<img src="${esc(a.image)}" alt="${esc(a.name)}" style="width:120px;height:110px;object-fit:contain;background:white;border-radius:9px" onerror="this.style.display='none'">`:''}<div><b>${esc(a.name)}</b><p class="small">게임 공략과 별개인 제휴 광고</p><a href="${esc(a.link)}" target="_blank" rel="noopener noreferrer sponsored" style="color:#f1cf7e">상품 확인하기 ↗</a></div></div>`;
+ }else{
+  let t=shuffledTips.length?shuffledTips:getTips(),x=t[tipIndex%t.length];
+  box.innerHTML=`<div class="tag">${esc(myChampion.name)} · ${esc(document.getElementById('position').selectedOptions[0].text)}</div><h3>${esc(x[0])}</h3><p>${esc(x[1])}</p>`;
+ }
+}
+document.getElementById('nexttip').onclick=()=>{if(tipSlideIsAd){tipSlideIsAd=false;tipsSinceAd=0;tipsUntilAd=2+Math.floor(Math.random()*4);tipIndex++;}else if(getShoeAds().length && ++tipsSinceAd>=tipsUntilAd){tipSlideIsAd=true;}else{tipIndex++;}renderTip()};
+
+function showSaved(){let list=JSON.parse(localStorage.getItem('jjbuildv3')||'[]');document.getElementById('saved').innerHTML=list.map((x,i)=>`<span><b>${esc(x.name)}</b> <button style="width:auto" data-load="${i}">불러오기</button> <button style="width:auto" data-delete="${i}">삭제</button></span>`).join('');document.querySelectorAll('[data-load]').forEach(b=>b.onclick=()=>{current=[...list[+b.dataset.load].items].filter(k=>items[k]&&permitted(k));if(current.length!==5){alert('이전 버전 빌드에 현재 챔피언과 맞지 않는 아이템이 있어 추천 빌드로 복구할게.');current=recommend()}renderBuild()});document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{list.splice(+b.dataset.delete,1);localStorage.setItem('jjbuildv3',JSON.stringify(list));showSaved()})}
+document.getElementById('refresh').onclick=refreshAll;document.getElementById('position').onchange=refreshAll;document.getElementById('style').addEventListener('change',refreshAll);document.getElementById('style').addEventListener('input',refreshAll);document.getElementById('reset').onclick=()=>{current=recommend();renderBuild()};document.getElementById('save').onclick=()=>{let name=prompt('빌드 이름을 입력해 줘','마이 연구 빌드');if(!name)return;let list=JSON.parse(localStorage.getItem('jjbuildv3')||'[]');list.push({name,items:[...current]});localStorage.setItem('jjbuildv3',JSON.stringify(list));showSaved()};
+async function loadChampions(){try{let ver=await fetch('https://ddragon.leagueoflegends.com/api/versions.json').then(r=>r.json());ddVersion=ver[0];let d=await fetch(`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/data/ko_KR/champion.json`).then(r=>r.json());champions=Object.values(d.data).map(x=>({name:x.name,id:x.id,tags:x.tags||[]})).sort((a,b)=>a.name.localeCompare(b.name,'ko'));document.getElementById('champstatus').textContent=`전체 챔피언 ${champions.length}명 검색 가능 · 데이터 버전 ${ddVersion}`;myChampion=champions.find(c=>c.name===myChampion.name)||myChampion;renderChamps();renderPlayer();refreshAll();try{let idata=await fetch(`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/data/ko_KR/item.json`).then(r=>r.json());itemDetails=idata.data;renderBuild()}catch(err){}}catch(e){document.getElementById('champstatus').textContent='오프라인: 기본 챔피언 목록만 사용 가능. 인터넷 연결 시 전체 목록 자동 적용.';renderChamps()}}
+shuffleTips();current=recommend();renderChamps();renderPlayer();renderBuild();renderRunes();renderRuneInfo();renderTip();showSaved();loadChampions();
+function getShoeAds(){try{return JSON.parse(localStorage.getItem('jj_shoe_ads')||'[]')}catch{return []}}
+function renderShoeAd(){
+ const ads=getShoeAds(),el=document.getElementById('shoeAdList');
+ document.getElementById('shoeCount').textContent=`(${ads.length}개)`;
+ if(!ads.length){el.innerHTML='<p class="small">등록된 광고가 없어. 위의 광고 상품 관리를 펼쳐서 등록해 줘.</p>';return}
+ el.innerHTML=ads.map((a,i)=>`<div class="adentry"><div class="flex" style="align-items:flex-start">${a.image?`<img src="${esc(a.image)}" alt="${esc(a.name)}" onerror="this.style.display='none'">`:''}<div class="admeta"><b>${esc(a.name)}</b><div class="small">광고 · 쿠팡파트너스</div><a href="${esc(a.link)}" target="_blank" rel="noopener noreferrer sponsored">상품 링크 확인 ↗</a><div><button data-delete-ad="${i}" aria-label="${esc(a.name)} 광고 삭제">이 상품 삭제</button></div></div></div></div>`).join('');
+ el.querySelectorAll('[data-delete-ad]').forEach(b=>b.onclick=()=>{const index=Number(b.dataset.deleteAd),arr=getShoeAds();if(!confirm(`「${arr[index]?.name||'선택한 상품'}」 광고를 삭제할까?`))return;arr.splice(index,1);localStorage.setItem('jj_shoe_ads',JSON.stringify(arr));resetTipRotation();renderTip();renderShoeAd()});
+}
+document.getElementById('shoeAdd').onclick=()=>{let name=document.getElementById('shoeName').value.trim(),image=document.getElementById('shoeImage').value.trim(),link=document.getElementById('shoeLink').value.trim();if(!name||!/^https:\/\//.test(link)||image&&!/^https:\/\//.test(image)){alert('상품명과 https:// 쿠팡 링크, 올바른 이미지 주소를 입력해 줘.');return}let ads=getShoeAds();ads.push({name,image,link});localStorage.setItem('jj_shoe_ads',JSON.stringify(ads));resetTipRotation();tipIndex=0;renderTip();renderShoeAd()};
+document.getElementById('shoeClear').onclick=()=>{localStorage.removeItem('jj_shoe_ads');resetTipRotation();tipIndex=0;renderTip();renderShoeAd()};
+
+renderShoeAd();
+// V9.1: 재미로 보는 MBTI·생년월·혈액형 포지션/챔피언 추천 (로컬 계산만 사용)
+(function(){
+const mb=document.getElementById('funMbti'), mo=document.getElementById('funMonth');
+for(const a of ['E','I'])for(const b of ['S','N'])for(const c of ['T','F'])for(const d of ['J','P']){let v=a+b+c+d;mb.add(new Option(v,v));}
+for(let i=1;i<=12;i++)mo.add(new Option(i+'월',String(i)));
+const roles=[
+ {id:'TOP',name:'탑',desc:'혼자 라인을 지키며 타이밍을 만드는 든든한 승부사',champs:['가렌','다리우스','말파이트','세트','모데카이저','오른']},
+ {id:'JUNGLE',name:'정글',desc:'맵 전체를 누비며 흐름을 바꾸는 전략가',champs:['마스터 이','리 신','워윅','아무무','볼리베어','자크']},
+ {id:'MID',name:'미드',desc:'순간 판단과 로밍으로 판을 흔드는 플레이메이커',champs:['아리','애니','럭스','야스오','베이가','사일러스']},
+ {id:'BOTTOM',name:'원딜',desc:'꾸준한 성장 끝에 한타를 마무리하는 딜러',champs:['징크스','애쉬','케이틀린','진','카이사','미스 포츈']},
+ {id:'UTILITY',name:'서포터',desc:'시야와 팀워크로 승리를 만드는 조력자',champs:['레오나','노틸러스','나미','소라카','룰루','블리츠크랭크']}
+];
+const bloodScore={'A형':2,'B형':5,'O형':8,'AB형':11,'모름':0};
+function hash(str){let h=2166136261;for(const ch of str){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
+let last=[];
+document.getElementById('funFind').onclick=()=>{
+ const type=mb.value,year=Number(document.getElementById('funYear').value),month=Number(mo.value),blood=document.getElementById('funBlood').value;
+ if(!type||!Number.isInteger(year)||year<1940||year>2026||!month||!blood){document.getElementById('funResult').innerHTML='<p class="warn">MBTI·태어난 연도·월·혈액형을 모두 입력해 줘. 혈액형을 모르면 「모름 / 비공개」를 선택하면 돼!</p>';return;}
+ const seed=hash(type+'|'+year+'|'+month+'|'+blood),weights=[0,0,0,0,0];
+ // 모든 항목이 결과에 반영되도록 놀이용 점수를 합산한다.
+ weights[(type[0]==='E'?2:0)]+=7;weights[(type[1]==='N'?1:3)]+=5;weights[(type[2]==='T'?0:4)]+=5;weights[(type[3]==='J'?1:2)]+=4;
+ weights[(year+month)%5]+=6;weights[(month+bloodScore[blood])%5]+=6;
+ roles.forEach((r,i)=>weights[i]+=(hash(type+year+month+blood+r.id)%9));
+ const ranked=roles.map((r,i)=>({...r,score:weights[i]})).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
+ last=ranked.slice(0,3).map((r,i)=>{let idx=hash(type+'-'+year+'-'+month+'-'+blood+'-'+r.id)%r.champs.length;return {...r,champ:r.champs[idx],rank:i+1};});
+ document.getElementById('funResult').innerHTML='<p class="good"><b>✨ 추천 결과!</b> '+type+' · '+year+'년 '+month+'월 · '+blood+' 기준, 오늘의 롤 성향은 <b>'+last[0].name+'</b>!</p><div class="personality-result">'+last.map(r=>'<div class="personality-card"><span class="tag">'+r.rank+'순위 추천</span><h3>'+r.name+' · '+r.champ+'</h3><p class="small">'+r.desc+'</p><button class="gold" data-fun-apply="'+r.rank+'">이 조합으로 빌드 보기 ↗</button></div>').join('')+'</div><p class="personality-note">※ 점수는 재미를 위한 임의 규칙이며 MBTI·혈액형·생년월이 게임 실력이나 적성을 예측한다는 근거는 없어.</p>';
+ document.querySelectorAll('[data-fun-apply]').forEach(b=>b.onclick=()=>{let r=last[Number(b.dataset.funApply)-1];if(!r)return;document.getElementById('position').value=r.id;myChampion=champions.find(c=>c.name===r.champ)||{name:r.champ,id:'',tags:[]};document.getElementById('mychamp').value=r.champ;renderPlayer();refreshAll();document.getElementById('playerstatus').scrollIntoView({behavior:'smooth',block:'center'});});
+};
+document.getElementById('funClear').onclick=()=>{mb.value='';mo.value='';document.getElementById('funYear').value='';document.getElementById('funBlood').value='';last=[];document.getElementById('funResult').innerHTML='';};
+})();
+</script></body></html>
