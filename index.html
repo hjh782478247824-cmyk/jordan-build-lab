@@ -383,11 +383,27 @@ function runeSuggestions(){let a=archetype(),pos=document.getElementById('positi
 function renderRunes(){let rec=runeSuggestions();document.getElementById('runes').innerHTML=runes.map((r,i)=>`<button class="runecard" data-rune="${i}" style="text-align:left;border-color:${r.name===activeRune?'#f1c96f':'#4c6887'}"><div class="flex">${runeIcon(r)}<b>${r.name}</b>${rec.includes(r.name)?'<span class="tag">추천</span>':''}</div><div class="small">${r.good}</div></button>`).join('');document.querySelectorAll('[data-rune]').forEach(b=>b.onclick=()=>{activeRune=runes[+b.dataset.rune].name;renderRunes();renderRuneInfo()})}
 function renderRuneInfo(){let r=runes.find(x=>x.name===activeRune),n=enemyNames(),p=profile(),isYi=myChampion.name==='마스터 이';let targets=n.filter(x=>r.kind==='tank'?tanks.includes(x):r.kind==='chase'?cc.includes(x)||!tanks.includes(x):r.kind==='late'?true:true);let targetText=!n.length?'상대 챔피언을 입력하면 해당 조합을 기준으로 설명해 줄게.':targets.length?targets.join(', '):'입력한 상대 중 특정 챔피언에만 유리하다고 단정하기 어려움';document.getElementById('runeinfo').innerHTML=`<h3>${r.icon} ${r.name}</h3><p class="good">✔ 기대할 수 있는 효과: ${r.good}</p><p class="bad">✘ 적용되지 않거나 제한되는 부분: ${r.name==='액시옴 비전 마법사'&&!isYi?'궁극기 직접 피해·회복·보호막 증폭은 해당 효과가 있는 챔피언에게만 적용. 이동·공속 버프는 직접 강화되지 않음.':r.bad}</p><hr><b>상대 조합 참고 (확정 상성 아님)</b><p>${esc(targetText)}</p><div class="small">주의: 상대 챔피언 추천은 룬의 일반적인 활용 조건을 기준으로 한 참고 설명이며, 확정적인 카운터 관계나 승률 데이터가 아님.</div>`}
 function renderPlayer(){let inp=document.getElementById('mychamp'),drop=document.getElementById('mysuggest'),a=document.getElementById('myavatar');function avatar(){a.style.display=myChampion.id?'block':'none';if(myChampion.id)a.src=`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${myChampion.id}.png`}function update(){let q=inp.value.trim().toLowerCase(),matches=q?champions.filter(c=>c.name.toLowerCase().includes(q)).slice(0,20):[];drop.innerHTML=matches.map(c=>`<div class="choice" data-id="${esc(c.id)}" data-name="${esc(c.name)}"><img class="avatar" src="https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${c.id}.png">${esc(c.name)}</div>`).join('');drop.style.display=matches.length?'block':'none';drop.querySelectorAll('[data-id]').forEach(el=>el.onclick=()=>{myChampion=champions.find(c=>c.id===el.dataset.id&&c.name===el.dataset.name)||champions.find(c=>c.name===el.dataset.name)||myChampion;inp.value=myChampion.name;drop.style.display='none';avatar();refreshAll()})}inp.oninput=update;inp.onfocus=()=>{let q=inp.value.trim().toLowerCase();if(q)update()};inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();let found=champions.find(c=>c.name===inp.value.trim());if(found){myChampion=found;drop.style.display='none';avatar();refreshAll();}}};inp.onblur=()=>setTimeout(()=>{drop.style.display='none';let found=champions.find(c=>c.name===inp.value.trim());if(found&&myChampion.name!==found.name){myChampion=found;avatar();refreshAll();}},180);avatar()}
-// 공개 광고 목록: 상품명, 이미지 주소, 제휴 링크를 여기에 입력하면 모든 방문자에게 노출됩니다.
-// 주의: 이전 브라우저에 저장한 8개 광고는 HTML 파일에 포함되어 있지 않아 자동 이전되지 않습니다.
+// =============================================================
+// ★ 광고 등록은 이곳만 수정하세요! (Ctrl+F → 광고 등록 시작)
+// 상품명(name), 상품 이미지 주소(image), 쿠팡 파트너스 링크(link)
+// 광고를 추가하려면 아래 예시의 맨 앞 // 를 지우고 실제 정보로 교체하세요.
+// 광고마다 쉼표(,)를 유지하세요. 이미지가 없으면 image: '' 로 두세요.
+// 공개 저장소이므로 여기에 비밀번호나 API 키는 절대 넣지 마세요.
+// =============================================================
+// ▼ 광고 등록 시작
 const PUBLIC_SHOE_ADS = [
-  // {name:'상품명', image:'https://이미지주소', link:'https://제휴링크'},
+   {name:'호카러닝화', image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/07/07/14/7/28ba23f3-8bfe-44aa-9c08-78b5492f1f59.png', link:'https://link.coupang.com/a/hW9XUIkZbM'},
+   {name:'호카러닝화', image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/07/07/14/7/28ba23f3-8bfe-44aa-9c08-78b5492f1f59.png', link:'https://link.coupang.com/a/hW9XUIkZbM'},  // {name:'두 번째 러닝화', image:'https://example.com/shoe2.jpg', link:'https://link.coupang.com/실제링크2'},
+   {name:'호카러닝화', image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/08/07/10/7/cfa0f559-6adb-4904-9616-e61594d33f0c.jpg', link:'https://link.coupang.com/a/hXabNjhnu8'},
+   {name:'아식스러닝화', image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/8353/c1a9729a6d142b857e4ec449162651dfedfb4691aa0cd13d9bed131a1904.jpg', link:'https://link.coupang.com/a/hXaiqZxTOK'},
+   {name:'아식스러닝화', image:'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/8645/e1ed5c5436dbae60b806c8f129a7d15286888f276ef95409287f06ef2af3.PNG', link:'https://link.coupang.com/a/hXanIsd6u4'},
+   {name:'포켓몬카드', image:https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/d69d/e3ab5171a741628ca58a8a261a71d92e905a11e19c44e13c1be705aafb95.png', link:'https://link.coupang.com/a/hXaOjziYai'},
+  // {name:'두 번째 러닝화', image:'https://example.com/shoe2.jpg', link:'https://link.coupang.com/실제링크2'},
+
 ];
+// ▲ 광고 등록 끝
+// 광고를 1개 이상 등록하면 팁을 2~5개 본 뒤 무작위 광고가 표시됩니다.
+// 광고가 0개일 때는 팁만 표시됩니다. 방문자에게 등록·삭제 기능은 제공되지 않습니다.
 function getShoeAds(){return PUBLIC_SHOE_ADS.filter(a=>a.name && /^https:\/\//.test(a.link));}
 
 function refreshAll(){
