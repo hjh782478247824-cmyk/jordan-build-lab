@@ -1,9 +1,9 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>조던힘조던 빌드 연구소 V10.1</title><style>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>조던힘조던 빌드 연구소 V10.6</title><style>
 *{box-sizing:border-box}body{margin:0;background:#0a1424;color:#eaf1ff;font-family:system-ui,'Malgun Gothic',sans-serif}header{background:#142742;border-bottom:1px solid #4b6688;padding:22px}main{max-width:1200px;margin:auto;padding:18px}h1{margin:0 0 7px;font-size:25px}h2{font-size:20px;margin:0 0 14px}h3{margin:8px 0}p{color:#b9cbe3;line-height:1.6}.panel{background:#192b43;border:1px solid #47607c;border-radius:14px;padding:18px;margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.champgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px}.champbox{position:relative}input,select,button{font:inherit;border-radius:9px;border:1px solid #547193;padding:10px;background:#0d1c30;color:white;width:100%}button{cursor:pointer}button:hover{border-color:#f2cb75}.gold{background:#edc976;color:#122139;border:0;font-weight:800}.small{font-size:12px;color:#b3c8df}.hint{font-size:13px;color:#9eb6d0}.dropdown{position:absolute;z-index:20;top:100%;left:0;right:0;background:#0e2038;border:1px solid #7c9abd;max-height:270px;overflow:auto;border-radius:8px;box-shadow:0 10px 20px #0009}.choice{display:flex;align-items:center;gap:8px;padding:7px;cursor:pointer}.choice:hover{background:#294768}.avatar{width:34px;height:34px;border-radius:6px;object-fit:cover;background:#263a53}.mainitem[title],.alt[title]{cursor:help}.itemicon{width:45px;height:45px;border-radius:8px;background:#30445a}.buildrow{display:grid;grid-template-columns:minmax(220px,1.2fr) minmax(0,2fr);gap:10px;margin:12px 0}.mainitem,.alternatives{background:#0e2037;border:1px solid #4c6686;border-radius:11px;padding:12px}.alternatives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.alt{border:1px solid #385875;border-radius:8px;padding:9px}.itemhead{display:flex;align-items:center;gap:9px}.tag{font-size:12px;color:#ffe19c}.why{font-size:13px;color:#bcd1e7;margin-top:7px}.runes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.runecard{background:#102239;border:1px solid #4c6887;padding:11px;border-radius:10px}.runeicon{width:40px;height:40px;object-fit:contain}.good{color:#8ee7b2}.bad{color:#ffb6ba}.warn{color:#f3d58d}.flex{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.flex button{width:auto}.saved{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.saved span{background:#0b1d33;padding:8px;border:1px solid #486481;border-radius:8px}hr{border:0;border-top:1px solid #405a78;margin:18px 0}@media(max-width:700px){.buildrow{grid-template-columns:1fr}.alternatives{grid-template-columns:1fr}header{padding:16px}}
  .adbox{margin-top:16px;padding:15px;background:#0d2034;border:1px dashed #b79a57;border-radius:12px}.adfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:10px 0}.adbox a{color:#f1cf7e}.adbox .flex button{width:auto}.adnotice{font-size:12px;color:#f1cf7e;margin:8px 0} .adlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:10px}.adentry{background:#102239;border:1px solid #45617e;border-radius:10px;padding:12px;min-width:0}.adentry img{width:76px;height:76px;object-fit:contain;background:white;border-radius:8px}.adentry a{color:#f1cf7e;overflow-wrap:anywhere}.adentry button{width:auto;margin-top:8px;padding:7px 12px}.adentry .admeta{min-width:0;flex:1}.adentry .small{overflow-wrap:anywhere}</style><style>
 .personality-result{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}.personality-card{background:#0d2038;border:1px solid #547193;border-radius:12px;padding:13px}.personality-card b{color:#f2cf83}.personality-card button{margin-top:10px}.personality-note{font-size:12px;color:#a9c0dc;margin-top:8px}
 </style><style>
-/* V10.1: 반응형 양쪽 광고 - 화면 너비에 따라 본문과 광고를 자동 배치 */
+/* V10.6: 반응형 양쪽 광고 - 화면 너비에 따라 본문과 광고를 자동 배치 */
 .side-ad{display:block;box-sizing:border-box;background:#192b43;border:1px solid #b79a57;border-radius:12px;padding:11px;text-align:center;box-shadow:0 8px 20px #0005;min-width:0}
 .side-ad .side-ad-title{font-size:12px;color:#f1cf7e;margin-bottom:8px}
 .side-ad img{display:block;width:100%;height:170px;object-fit:contain;background:white;border-radius:8px}
@@ -31,7 +31,7 @@
 }
 .fun-champ{display:flex;align-items:center;gap:12px;margin:10px 0}.fun-champ img{width:82px;height:82px;object-fit:cover;border-radius:12px;border:2px solid #edc976}.fun-champ h3{margin:0 0 5px}.runeicon{vertical-align:middle;margin-right:7px}.personality-card .small{line-height:1.6}</style><style>.runes{grid-template-columns:repeat(auto-fit,minmax(min(100%,390px),1fr))}.rune-page{border:1px solid #496782;border-radius:12px;padding:14px;background:#0d2038}.rune-page-active{border-color:#f1cb76}.rune-page-top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.rune-columns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.rune-group-title{color:#f1cf85;font-size:13px;font-weight:700;margin-bottom:7px}.rune-tile{display:flex;align-items:center;gap:7px;padding:8px 4px;border-bottom:1px solid #304a68;min-width:0}.rune-tile .small{font-size:11px;line-height:1.35;margin-top:3px}.rune-tile b{font-size:12px}.rune-tile .runeicon{flex:none;width:33px;height:33px}.rune-fallback{width:33px;height:33px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#273d60;color:#f4d17a;flex:none}.rune-detail-btn{margin-top:12px;background:#29445d;border-color:#6885a1;font-size:12px}@media(max-width:450px){.rune-columns{grid-template-columns:1fr}}.rune-cautions{margin-top:16px;border-top:1px solid #45617e;padding-top:12px}.rune-caution-row{display:grid;grid-template-columns:minmax(95px,.55fr) minmax(0,1.3fr) minmax(0,1.3fr);gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid #304962;font-size:13px}.rune-caution-row b{color:#f2cf83}.rune-caution-row span{line-height:1.5}@media(max-width:680px){.rune-caution-row{grid-template-columns:1fr;gap:3px}}
 </style>
-<!-- V10.1 방문 통계 설정: GA4에서 발급받은 측정 ID를 아래 한 곳에 입력하세요. -->
+<!-- V10.6 방문 통계 설정: GA4에서 발급받은 측정 ID를 아래 한 곳에 입력하세요. -->
 <script>
 const JORDAN_GA4_MEASUREMENT_ID = 'G-LK7KBYHR90';
 (function(){
@@ -51,10 +51,67 @@ function jordanTrack(eventName,params){
   try{window.gtag('event',eventName,params||{})}catch(e){}
 }
 </script>
-</head><body><header><h1>⚔️ 조던힘조던 빌드 연구소 V10.1</h1><div class="small">초보자용 무료 팬 프로젝트 · 기본 추천 5개와 재미있는 대안템 비교 · 아이언/브론즈 팁</div></header><main><section class="panel" style="border-color:#b79a57"><b>🎮 비공식 무료 팬 프로젝트 · 방문 통계 연결 준비 V10.1</b><p class="hint">라이엇 게임즈가 제작·후원·승인한 프로그램이 아닙니다. 아이템·룬 추천은 재미와 학습을 위한 예시이며, 승률이나 최신 메타를 보장하지 않습니다. 공식 게임 데이터와 이미지의 권리는 각 권리자에게 있습니다.</p><p class="small">This product is not endorsed, certified or otherwise approved by Riot Games. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p><p class="small">공개 서비스 등록·라이엇 정책 및 상업적 이용 조건 확인 전에는 비공개 테스트용으로만 사용해 주세요. 면책 문구 추가만으로 배포 허가가 완료되는 것은 아닙니다. <a href="https://developer.riotgames.com/" target="_blank" rel="noopener noreferrer" style="color:#f1cf7e">Riot Developer Portal ↗</a></p></section>
-<section class="panel" id="personalityPanel" style="border-color:#b79a57"><h2>🔮 나만의 롤 포지션·챔피언 찾기</h2><p class="hint">MBTI·태어난 연도와 월·혈액형으로 재미있게 나와 어울리는 포지션과 챔피언을 찾아봐! 결과는 성격이나 실력을 과학적으로 판단하는 테스트가 아닌 <b>오락용 매칭</b>이야.</p><div class="grid"><label>MBTI<select id="funMbti"><option value="">선택하기</option></select></label><label>태어난 연도<input type="number" id="funYear" min="1940" max="2026" placeholder="예: 1977" inputmode="numeric"></label><label>태어난 월<select id="funMonth"><option value="">선택하기</option></select></label><label>혈액형<select id="funBlood"><option value="">선택하기</option><option>A형</option><option>B형</option><option>O형</option><option>AB형</option><option value="모름">모름 / 비공개</option></select></label></div><div class="flex" style="margin-top:12px"><button class="gold" id="funFind" style="width:auto">🎲 내 운명의 포지션·챔피언 추천!</button><button id="funClear" style="width:auto">입력 초기화</button></div><div id="funResult" aria-live="polite"></div><p class="personality-note">입력 정보는 서버로 전송하지 않으며 이 페이지에서는 저장하지 않아. 결과가 마음에 들면 추천 적용 버튼으로 아래 빌드 연구소에 바로 연결할 수 있어.</p></section><section class="panel"><h2>🧑‍🚀 내 포지션과 챔피언 선택</h2><div class="grid"><label>내 포지션<select id="position"><option value="JUNGLE">정글</option><option value="TOP">탑</option><option value="MID">미드</option><option value="BOTTOM">원딜</option><option value="UTILITY">서포터</option></select></label><div class="champbox"><label>내 챔피언 (이름 일부 자동완성)</label><div class="flex" style="flex-wrap:nowrap"><img class="avatar" id="myavatar" style="display:none"><input id="mychamp" autocomplete="off" value="마스터 이" placeholder="예: 마"></div><div class="dropdown" id="mysuggest" style="display:none"></div></div></div><p class="hint" id="playerstatus">내 챔피언과 포지션을 먼저 고르면 추천 아이템과 룬이 바뀌어.</p></section><section class="panel"><h2>🎯 상대 팀 챔피언 (자동완성)</h2><p class="hint">'마'를 입력하면 이름에 '마'가 포함된 챔피언을 보여줘. 온라인일 때 전체 챔피언 목록과 초상화를 자동으로 불러와.</p><div class="champgrid" id="champs"></div><div class="flex" style="margin-top:13px"><label>플레이 스타일 <select id="style"><option value="balanced">전사 (공격·생존)</option><option value="tank">탱커 (방어·체력)</option><option value="ad">AD 딜러 (물리 공격)</option><option value="ap">AP 딜러 (마법 공격)</option><option value="burst">치명타 딜러 (치명타)</option><option value="chase">공격 속도 딜러 (연속 공격)</option><option value="assassin">암살자 (순간 폭딜)</option><option value="support">서포터·힐러 (보호·회복)</option></select></label><button class="gold" id="refresh">상대 조합 추천 갱신</button></div><div class="small" id="champstatus"></div></section>
+<style>
+/* V10.6: 작은 안내 문구를 읽기 쉽게 확대 */
+.small,.personality-note,.side-ad .side-ad-notice,.adnotice{font-size:13px;line-height:1.65}
+.hint,.why,.tag,.rune-group-title,.side-ad .side-ad-title,.side-ad a{font-size:14px;line-height:1.6}
+.personality-card .small,.personality-card p,.rune-tile .small{font-size:14px;line-height:1.6}
+.personality-card h3{font-size:18px}.personality-card button{font-size:14px}
+input,select,button,label{font-size:14px}p{font-size:14px}
+@media(max-width:600px){.personality-result{grid-template-columns:1fr}.small,.hint{font-size:13px}}
+.ally-match{border-top:1px solid #385875;padding-top:10px;margin-top:12px;display:flex;align-items:center;gap:10px}
+.ally-match img{width:46px;height:46px;border-radius:8px;object-fit:cover}
+.stats-table{width:100%;border-collapse:collapse;font-size:14px}.stats-table th,.stats-table td{padding:9px;border-bottom:1px solid #385875;text-align:right}.stats-table th:first-child,.stats-table td:first-child{text-align:left}
+</style><style>
+#todayCounter{position:fixed;top:115px;right:12px;width:155px;z-index:7;border:1px solid #d9b96c;border-radius:12px;background:#172b45;color:#f7e2a3;padding:12px 9px;text-align:center;box-shadow:0 5px 18px #0006;display:flex;flex-direction:column;gap:6px;font-size:13px}
+#todayCounter strong{font-size:24px;color:#fff}#todayCounter small{font-size:11px;color:#b9cbe3}
+@media(min-width:1200px){#todayCounter{top:calc(100vh - 130px);right:12px;width:155px}}
+@media(min-width:1550px){#todayCounter{right:max(12px,calc((100vw - 1200px)/2 - 185px))}}
+@media(max-width:1199px){#todayCounter{position:static;width:auto;max-width:1200px;margin:12px auto 0;flex-direction:row;justify-content:center;align-items:center;flex-wrap:wrap}}
+/* V10.6: 오른쪽 광고 아래 방문 카운터 간격을 12px로 유지 */
+@media(min-width:1200px){#todayCounter{top:520px}}
+</style><script>
+document.addEventListener('DOMContentLoaded',function(){
+  const ad=document.getElementById('sideAdRight');
+  const counter=document.getElementById('todayCounter');
+  if(!ad||!counter)return;
+  function placeCounter(){
+    if(window.innerWidth<1200){counter.style.top='';return;}
+    const bottom=ad.getBoundingClientRect().bottom;
+    if(bottom>0)counter.style.top=Math.round(bottom+12)+'px';
+  }
+  if(typeof ResizeObserver!=='undefined')new ResizeObserver(placeCounter).observe(ad);
+  window.addEventListener('resize',placeCounter);
+  window.addEventListener('load',placeCounter);
+  requestAnimationFrame(placeCounter);
+});
+</script><style>
+/* V10.6: 추천 카드 콘텐츠 길이에 따른 버튼 위치 흔들림 최소화 */
+.personality-result{align-items:stretch;grid-template-columns:repeat(3,minmax(0,1fr))}
+.personality-card{display:flex;flex-direction:column;min-width:0;min-height:430px;gap:0}
+.personality-card>.tag{display:block;flex:none;min-height:26px}
+.personality-card>.fun-champ{flex:none;min-height:120px;align-items:flex-start}
+.personality-card>.fun-champ>div{min-width:0}
+.personality-card>.fun-champ h3{min-height:28px;overflow-wrap:anywhere}
+.personality-card>.fun-champ p{margin:7px 0;line-height:1.55}
+.personality-card>.fun-reason{flex:1 1 auto;min-height:125px;margin:8px 0 12px;line-height:1.55}
+.personality-card>.ally-match{flex:none;min-height:108px;margin-top:auto}
+.personality-card>button[data-fun-apply]{flex:none;min-height:48px;margin-top:12px;align-self:stretch}
+.personality-card .ally-match img{flex:none}
+@media(max-width:800px){.personality-result{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}.personality-card{min-height:0}.personality-card>.fun-reason{min-height:0}.personality-card>.ally-match{min-height:100px}}
+</style><style>
+/* V10.6: 룬 추천 카드의 높이를 맞추고 선택 버튼을 카드 하단에 고정 */
+#runes{align-items:stretch;grid-auto-rows:1fr}
+#runes .rune-page{display:flex;flex-direction:column;min-width:0;height:100%}
+#runes .rune-columns{flex:1 1 auto;align-content:start}
+#runes .rune-detail-btn{margin-top:auto;min-height:46px;flex-shrink:0;align-self:stretch}
+#runes .rune-columns + .rune-detail-btn{margin-top:auto}
+#runes .rune-page .why{min-height:2.8em}
+@media(max-width:700px){#runes{grid-auto-rows:auto}#runes .rune-page .why{min-height:0}}
+</style></head><body><header><h1>⚔️ 조던힘조던 빌드 연구소 V10.6</h1><div class="small">초보자용 무료 팬 프로젝트 · 기본 추천 5개와 재미있는 대안템 비교 · 아이언/브론즈 팁</div></header><aside id="todayCounter" aria-live="polite"><span>👀 오늘 방문 횟수</span><strong id="todayHitCount">연결 전</strong><small>재접속도 포함 · 한국시간</small></aside><main><section class="panel" style="border-color:#b79a57"><b>🎮 비공식 무료 팬 프로젝트 · 방문 통계 연결 준비 V10.6</b><p class="hint">라이엇 게임즈가 제작·후원·승인한 프로그램이 아닙니다. 아이템·룬 추천은 재미와 학습을 위한 예시이며, 승률이나 최신 메타를 보장하지 않습니다. 공식 게임 데이터와 이미지의 권리는 각 권리자에게 있습니다.</p><p class="small">This product is not endorsed, certified or otherwise approved by Riot Games. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p><p class="small">공개 서비스 등록·라이엇 정책 및 상업적 이용 조건 확인 전에는 비공개 테스트용으로만 사용해 주세요. 면책 문구 추가만으로 배포 허가가 완료되는 것은 아닙니다. <a href="https://developer.riotgames.com/" target="_blank" rel="noopener noreferrer" style="color:#f1cf7e">Riot Developer Portal ↗</a></p></section>
+<section class="panel" id="statsPanel" style="display:none" style="border-color:#b79a57"><h2>📊 빌드 연구소 일별 방문 통계 <span class="tag">V10.6</span></h2><p class="hint" id="statsStatus">통계 저장소 연결 전이야. 아래 설정 안내서에 따라 Supabase를 연결하면 날짜별 방문자·조회수가 자동 저장돼.</p><div id="statsLogin"><div class="grid"><label>관리자 이메일<input type="email" id="statsEmail" autocomplete="username" placeholder="관리자 이메일"></label><label>관리자 비밀번호<input type="password" id="statsPassword" autocomplete="current-password" placeholder="비밀번호"></label></div><div class="flex" style="margin-top:10px"><button id="statsSignIn" style="width:auto">관리자 통계 보기</button><button id="statsSignOut" style="width:auto;display:none">로그아웃</button></div></div><div id="statsResults" style="margin-top:12px"></div><p class="small">방문자 수는 브라우저별 익명 식별자 기준 추정치야. 통계 저장은 연결 완료 이후부터 시작하며, 설치 전 기록은 소급되지 않아.</p></section><section class="panel" id="personalityPanel" style="border-color:#b79a57"><h2>🔮 나만의 롤 포지션·챔피언 찾기</h2><p class="hint">MBTI·태어난 연도와 월·혈액형으로 재미있게 나와 어울리는 포지션과 챔피언을 찾아봐! 결과는 성격이나 실력을 과학적으로 판단하는 테스트가 아닌 <b>오락용 매칭</b>이야.</p><div class="grid"><label>MBTI<select id="funMbti"><option value="">선택하기</option></select></label><label>태어난 연도<input type="number" id="funYear" min="1940" max="2026" placeholder="예: 1977" inputmode="numeric"></label><label>태어난 월<select id="funMonth"><option value="">선택하기</option></select></label><label>혈액형<select id="funBlood"><option value="">선택하기</option><option>A형</option><option>B형</option><option>O형</option><option>AB형</option><option value="모름">모름 / 비공개</option></select></label></div><div class="flex" style="margin-top:12px"><button class="gold" id="funFind" style="width:auto">🎲 내 운명의 포지션·챔피언 추천!</button><button id="funClear" style="width:auto">입력 초기화</button></div><div id="funResult" aria-live="polite"></div><p class="personality-note">입력 정보는 서버로 전송하지 않으며 이 페이지에서는 저장하지 않아. 결과가 마음에 들면 추천 적용 버튼으로 아래 빌드 연구소에 바로 연결할 수 있어.</p></section><section class="panel"><h2>🧑‍🚀 내 포지션과 챔피언 선택</h2><div class="grid"><label>내 포지션<select id="position"><option value="JUNGLE">정글</option><option value="TOP">탑</option><option value="MID">미드</option><option value="BOTTOM">원딜</option><option value="UTILITY">서포터</option></select></label><div class="champbox"><label>내 챔피언 (이름 일부 자동완성)</label><div class="flex" style="flex-wrap:nowrap"><img class="avatar" id="myavatar" style="display:none"><input id="mychamp" autocomplete="off" value="마스터 이" placeholder="예: 마"></div><div class="dropdown" id="mysuggest" style="display:none"></div></div></div><p class="hint" id="playerstatus">내 챔피언과 포지션을 먼저 고르면 추천 아이템과 룬이 바뀌어.</p></section><section class="panel"><h2>🎯 상대 팀 챔피언 (자동완성)</h2><p class="hint">'마'를 입력하면 이름에 '마'가 포함된 챔피언을 보여줘. 온라인일 때 전체 챔피언 목록과 초상화를 자동으로 불러와.</p><div class="champgrid" id="champs"></div><div class="flex" style="margin-top:13px"><label>플레이 스타일 <select id="style"><option value="balanced">전사 (공격·생존)</option><option value="tank">탱커 (방어·체력)</option><option value="ad">AD 딜러 (물리 공격)</option><option value="ap">AP 딜러 (마법 공격)</option><option value="burst">치명타 딜러 (치명타)</option><option value="chase">공격 속도 딜러 (연속 공격)</option><option value="assassin">암살자 (순간 폭딜)</option><option value="support">서포터·힐러 (보호·회복)</option></select></label><button class="gold" id="refresh">상대 조합 추천 갱신</button></div><div class="small" id="champstatus"></div></section>
 <section class="panel"><h2>🛡️ 초보자 기본템 1~5번 + 상황별 교체 대안</h2><p class="hint">기본템은 역할별 연습용 예시이며 최신 패치 승률 기반 추천은 아니야. 아무무는 상황별 방어 아이템을 비교하고, 신발은 별도로 선택해. 대안은 챔피언 역할과 상대 조합을 함께 고려해 2개를 우선 표시해. '대안 더 보기'를 누르면 다른 방향의 후보도 펼쳐져. 대안을 선택하면 해당 메인 슬롯만 교체돼. 신발은 코어템 대안에 섞지 않고 별도로 안내해.</p><div id="matchup" class="mainitem" style="margin-bottom:12px"></div><div id="build"></div><div class="flex"><button class="gold" id="save">현재 빌드 저장</button><button id="reset">추천 빌드로 초기화</button></div><div class="saved" id="saved"></div></section>
-<section class="panel"><h2>🧪 추천 룬과 사용법 · 언제 좋고 언제 아쉬울까?</h2><div class="hint" id="runerecommend"></div><p class="hint">추천 조합만 보여줘! 핵심 룬 + 주 룬 3개 + 보조 룬 2개. 각 룬의 역할도 짧게 표시해.</p><div class="runes" id="runes"></div><div id="runeinfo" class="mainitem" style="margin-top:12px"></div></section><section class="panel"><h2>🎓 아이언·브론즈 탈출 실전 팁</h2><p class="hint">챔피언·포지션·플레이 스타일에 따라 기본 팁이 달라져. 팁을 2~5개 본 뒤 무작위 간격으로 러닝화 광고가 나와. 광고가 없으면 팁만 계속 보여줘.</p><div id="coachtip" class="mainitem"></div><div class="flex" style="margin-top:12px"><button class="gold" id="nexttip">다음 팁 보기 ↻</button></div><p class="adnotice">광고 · 쿠팡 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다.</p></section><p class="small">※ V10.1은 챔피언 역할 기반의 규칙형 연구용 추천이야. 추천 아이템은 포지션과 챔피언 역할별 예시이며 모든 챔피언의 실제 최적 빌드를 보장하지 않아. 승률 통계나 실시간 게임 패치를 자동 분석하지 않으며, 아이템 위에 마우스를 올리면 온라인에서 불러온 라이엇 Data Dragon 아이템 설명을 볼 수 있어. 정확한 최신 수치는 클라이언트에서 확인해 줘. 챔피언·아이템 이미지는 인터넷 연결이 필요할 수 있어.</p></main><script>
+<section class="panel"><h2>🧪 추천 룬과 사용법 · 언제 좋고 언제 아쉬울까?</h2><div class="hint" id="runerecommend"></div><p class="hint">추천 조합만 보여줘! 핵심 룬 + 주 룬 3개 + 보조 룬 2개. 각 룬의 역할도 짧게 표시해.</p><div class="runes" id="runes"></div><div id="runeinfo" class="mainitem" style="margin-top:12px"></div></section><section class="panel"><h2>🎓 아이언·브론즈 탈출 실전 팁</h2><p class="hint">챔피언·포지션·플레이 스타일에 따라 기본 팁이 달라져. 팁을 2~5개 본 뒤 무작위 간격으로 러닝화 광고가 나와. 광고가 없으면 팁만 계속 보여줘.</p><div id="coachtip" class="mainitem"></div><div class="flex" style="margin-top:12px"><button class="gold" id="nexttip">다음 팁 보기 ↻</button></div><p class="adnotice">광고 · 쿠팡 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다.</p></section><p class="small">※ V10.6은 챔피언 역할 기반의 규칙형 연구용 추천이야. 추천 아이템은 포지션과 챔피언 역할별 예시이며 모든 챔피언의 실제 최적 빌드를 보장하지 않아. 승률 통계나 실시간 게임 패치를 자동 분석하지 않으며, 아이템 위에 마우스를 올리면 온라인에서 불러온 라이엇 Data Dragon 아이템 설명을 볼 수 있어. 정확한 최신 수치는 클라이언트에서 확인해 줘. 챔피언·아이템 이미지는 인터넷 연결이 필요할 수 있어.</p></main><script>
 const VERSION='15.20.1';let ddVersion=VERSION, champions=[], selected=Array(5).fill(null), current=[],expanded=new Set(), myChampion={name:"마스터 이",id:"MasterYi",tags:["Fighter","Assassin"]}, itemDetails={};
 const fallback=['아리','볼리베어','워윅','사일러스','마스터 이','마오카이','말파이트','마오카이','마스터 이','카르마','아무무','사미라','니달리','르블랑','블리츠크랭크','브랜드','럭스','리 신','세트','애쉬','징크스','다리우스','가렌','나서스','문도 박사','람머스','레오나','노틸러스','자크','오른','초가스','케이틀린','야스오','요네','카타리나','제드','탈론','티모','모르가나','밀리오','바루스','카이사','베인','진','트리스타나','아트록스','신 짜오','카밀','나미','소라카','유미','스웨인','블라디미르','말자하','마오카이','마스터 이','마오카이','마스터 이','마오카이'].filter(x=>!x.includes('?')&&!x.includes('아님'));
 champions=[...new Set(fallback)].map(name=>({name,id:name==='마스터 이'?'MasterYi':'',tags:name==='아무무'||name==='말파이트'||name==='람머스'||name==='레오나'||name==='노틸러스'?['Tank']:name==='아리'||name==='럭스'||name==='브랜드'?['Mage']:name==='징크스'||name==='애쉬'||name==='케이틀린'?['Marksman']:[]}));
@@ -270,7 +327,7 @@ function alternativePool(key,i){
  if(roleOf()==='amumu')return amumuSlotCandidates(i);
  const role=roleOf(),p=advancedThreat(),style=document.getElementById('style').value;
  const family=(slotFamilies[role]||slotFamilies.fighter)[i]||[];
- // V10.1: 전사 대안은 현재 선택한 스타일과 슬롯 목적을 우선한다.
+ // V10.6: 전사 대안은 현재 선택한 스타일과 슬롯 목적을 우선한다.
  // 공격 슬롯에 순수 방어 아이템이 끼어들지 않도록 별도 후보군을 사용한다.
  if(role==='fighter'){
   const offense=['stride','blackcleaver','shojin','sundered','trinity','hex','bork'];
@@ -435,7 +492,7 @@ function runeIcon(r){
  return `<img class="runeicon" src="${url}" alt="${esc(r.name)}" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='${fallback+path.toLowerCase()}'}else{this.style.display='none';this.nextElementSibling.style.display='inline-flex'}"><span class="rune-fallback" style="display:none" aria-label="${esc(r.name)}">✦</span>`;
 }
 const runes=[{name:'치명적 속도',icon:'⚡',good:'기본 공격을 오래 이어갈 수 있는 근접 교전에서 유리',bad:'순간 폭딜만으로 끝나는 교전에서는 중첩 활용이 제한됨',kind:'tank'}, {name:'승전보',icon:'💚',good:'킬 관여가 이어지는 난전에서 체력 회복',bad:'킬 관여가 없으면 회복하지 않음',kind:'fight'}, {name:'전설: 민첩함',icon:'🏹',good:'기본 공격 중심 빌드와 잘 맞음',bad:'군중 제어를 직접 해제하지 않음',kind:'fight'}, {name:'최후의 일격',icon:'🎯',good:'체력이 낮은 적 마무리에 도움',bad:'체력이 높은 적에게 같은 보너스가 적용되지 않음',kind:'fight'}, {name:'피의 맛',icon:'🩸',good:'적 챔피언과의 짧은 교전에서 회복',bad:'계속 공격한다고 매 타격마다 회복하지 않음',kind:'fight'}, {name:'궁극의 사냥꾼',icon:'😈',good:'고유 처치 관여를 쌓아 궁극기 재사용 대기시간 감소',bad:'궁극기 공격 속도·이동 속도 자체를 높이지 않음',kind:'fight'}, {name:'폭풍의 결집',icon:'🌪️',good:'시간이 지날수록 적응형 능력치 증가',bad:'초반 교전에서 즉각적인 성장 효과가 적음',kind:'late'}, {name:'액시옴 비전 마법사',icon:'🔮',good:'처치 관여 시 남은 궁극기 재사용 대기시간 감소',bad:'마이 궁극기의 공격 속도·이동 속도 증가량은 직접 강화하지 않음',kind:'fight'}, {name:'기민함',icon:'👟',good:'추격·이동 속도 보너스 활용',bad:'공격 속도를 직접 높이지 않음',kind:'chase'}, {name:'깨달음',icon:'⌛',good:'일반 스킬 가속 활용',bad:'궁극기 가속을 직접 제공하지 않음',kind:'fight'}, {name:'비열한 한 방',icon:'🗡️',good:'둔화·이동 방해 효과를 걸 수 있는 상황에서 추가 피해',bad:'둔화 없이 기본 공격만으로 항상 발동하지 않음',kind:'chase'}];let activeRune='액시옴 비전 마법사';
-// V10.1: 챔피언 이름별 추천 룬 우선 적용. 등록되지 않은 챔피언은 역할별 후보 안내.
+// V10.6: 챔피언 이름별 추천 룬 우선 적용. 등록되지 않은 챔피언은 역할별 후보 안내.
 const championRuneProfiles={
  '마스터 이':['치명적 속도','승전보','전설: 민첩함','최후의 일격'],
  '아리':['감전','피의 맛','궁극의 사냥꾼','깨달음'],
@@ -471,7 +528,7 @@ const extraRuneData=[
  ['돌발 일격','돌진·점멸·은신 해제 후 공격할 때','해당 이동 조건을 충족하지 못하면 발동하지 않음','Domination/SuddenImpact/SuddenImpact.png']
 ];
 extraRuneData.forEach(([name,good,bad,path])=>{if(!runes.some(r=>r.name===name))runes.push({name,good,bad,kind:'fight'});runeImageIds[name]=path});
-// V10.1: 실제 룬 페이지처럼 핵심+주 계열 3개+보조 계열 2개만 표시.
+// V10.6: 실제 룬 페이지처럼 핵심+주 계열 3개+보조 계열 2개만 표시.
 const runeTrees={
  '치명적 속도':'정밀','정복자':'정밀','승전보':'정밀','전설: 민첩함':'정밀','전설: 가속':'정밀','최후의 일격':'정밀','최후의 저항':'정밀',
  '칼날비':'지배','감전':'지배','돌발 일격':'지배','피의 맛':'지배','궁극의 사냥꾼':'지배','비열한 한 방':'지배',
@@ -508,7 +565,7 @@ function getRuneBuilds(){return runeBuilds[myChampion.name]||roleBuilds[roleOf()
 function runeTile(name){let r=runes.find(x=>x.name===name)||{name,good:'현재 게임에서 효과를 확인해 주세요',bad:'패치에 따라 달라질 수 있음'};return `<div class="rune-tile" title="${esc(r.good)}">${runeIcon(r)}<div><b>${esc(name)}</b><div class="small">${esc(r.good)}</div></div></div>`}
 function runeSuggestions(){let builds=getRuneBuilds();let specific=!!runeBuilds[myChampion.name];document.getElementById('runerecommend').innerHTML=`<b>${esc(myChampion.name)} · ${esc(document.getElementById('position').selectedOptions[0].text)} 추천 룬 ${builds.length}가지</b><div class="small">${specific?'챔피언별 연습용 추천':'전용 데이터가 없어 역할별 연습용 추천'} · 실제 승률이나 실시간 최적 빌드를 보장하지 않아.</div>`;return builds}
 function renderRunes(){let builds=runeSuggestions();if(activeRuneBuild>=builds.length)activeRuneBuild=0;document.getElementById('runes').innerHTML=builds.map((b,i)=>`<div class="rune-page ${activeRuneBuild===i?'rune-page-active':''}"><div class="rune-page-top"><b>${i+1}안 · ${esc(b.title)}</b><span class="tag">${esc(b.key)} 중심</span></div><p class="why">${esc(b.why)}</p><div class="rune-columns"><div><div class="rune-group-title">주 룬 · ${esc(runeTrees[b.key]||'확인 필요')}</div>${[b.key,...b.primary].map(runeTile).join('')}</div><div><div class="rune-group-title">보조 룬 · ${esc(runeTrees[b.secondary[0]]||'확인 필요')}</div>${b.secondary.map(runeTile).join('')}</div></div><button class="rune-detail-btn" data-build="${i}">${activeRuneBuild===i?'선택한 추천 조합':'이 추천 조합 설명 보기'}</button></div>`).join('');document.querySelectorAll('[data-build]').forEach(btn=>btn.onclick=()=>{activeRuneBuild=+btn.dataset.build;renderRunes();renderRuneInfo()})}
-// V10.1: 선택한 추천 조합의 각 룬별 발동 조건과 주의점을 항상 표시한다.
+// V10.6: 선택한 추천 조합의 각 룬별 발동 조건과 주의점을 항상 표시한다.
 function runeCautions(build){
  const names=[build.key,...build.primary,...build.secondary];
  return names.map(name=>{
@@ -605,6 +662,40 @@ const roles=[
 const bloodScore={'A형':2,'B형':5,'O형':8,'AB형':11,'모름':0};
 function hash(str){let h=2166136261;for(const ch of str){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
 function funChampImage(name){const c=champions.find(x=>x.name===name);return c&&c.id?`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${c.id}.png`:'';}
+const funAllyPairs={
+ '럭스':['케이틀린','럭스의 속박과 케이틀린의 덫을 이어서 연계하기 좋아.'],
+ '아리':['바이','바이의 확정 진입에 아리의 매혹과 폭딜을 연계할 수 있어.'],
+ '마스터 이':['룰루','룰루의 보호막과 궁극기가 마스터 이의 진입 생존을 도와줘.'],
+ '아무무':['미스 포츈','아무무의 광역 속박 후 미스 포츈 궁극기를 연계하기 좋아.'],
+ '야스오':['말파이트','말파이트의 띄우기와 야스오 궁극기를 연계할 수 있어.'],
+ '말파이트':['야스오','말파이트 궁극기로 적을 띄우면 야스오가 연계할 수 있어.'],
+ '레오나':['사미라','레오나의 진입과 군중 제어가 사미라의 교전 진입을 도와줘.'],
+ '노틸러스':['카이사','노틸러스의 군중 제어와 카이사의 진입을 연계하기 좋아.'],
+ '소라카':['징크스','소라카의 회복으로 징크스가 긴 교전에서 공격을 이어갈 수 있어.'],
+ '나미':['루시안','나미의 강화 공격과 루시안의 연속 공격이 잘 어울려.'],
+ '징크스':['쓰레쉬','쓰레쉬의 보호와 군중 제어가 징크스의 안정적인 공격을 도와줘.'],
+ '애쉬':['브라움','애쉬의 둔화와 브라움의 기절 연계로 상대를 묶기 좋아.'],
+ '케이틀린':['럭스','럭스의 속박에 케이틀린의 덫을 연결해 라인 압박을 높일 수 있어.'],
+ '진':['제라스','제라스의 원거리 견제와 진의 속박·궁극기를 연계하기 좋아.'],
+ '가렌':['자르반 4세','자르반의 진입과 가렌의 근접 마무리를 연계하기 좋아.'],
+ '다리우스':['노틸러스','노틸러스가 적을 붙잡아 두면 다리우스가 중첩을 쌓기 쉬워.'],
+ '리 신':['야스오','리 신의 궁극기 넉백과 야스오 궁극기를 연계할 수 있어.'],
+ '워윅':['럭스','워윅의 제압과 럭스의 원거리 속박·폭딜을 연계할 수 있어.'],
+ '자크':['야스오','자크의 띄우기와 야스오 궁극기가 잘 어울려.'],
+ '오른':['야스오','오른의 광역 띄우기에 야스오 궁극기를 연계할 수 있어.'],
+ '세트':['오리아나','세트가 진입할 때 오리아나의 공을 함께 활용해 한타를 열 수 있어.'],
+ '베이가':['자르반 4세','자르반의 지형과 베이가의 사건의 지평선으로 이동을 제한하기 좋아.'],
+ '사일러스':['아무무','아무무가 적을 묶어 두면 사일러스가 접근해 스킬을 맞히기 좋아.'],
+ '카이사':['노틸러스','노틸러스의 군중 제어에 카이사의 진입을 연계하기 좋아.'],
+ '미스 포츈':['아무무','아무무의 광역 군중 제어와 미스 포츈 궁극기가 잘 어울려.'],
+ '블리츠크랭크':['징크스','끌어온 적을 징크스의 덫과 공격으로 마무리하기 좋아.'],
+ '모데카이저':['세주아니','세주아니의 진입과 군중 제어가 모데카이저의 근접 교전을 도와줘.']
+};
+function funAllyHtml(champ){
+ const pair=funAllyPairs[champ]||['아무무','광역 군중 제어로 교전 기회를 만들어 줄 수 있어.'];
+ const img=funChampImage(pair[0]);
+ return '<div class="ally-match">'+(img?'<img src="'+img+'" alt="'+esc(pair[0])+'" onerror="this.style.display=\'none\'">':'')+'<div><b>🤝 함께하면 좋은 챔피언: '+esc(pair[0])+'</b><div class="small">'+esc(pair[1])+'</div></div></div>';
+}
 function funReason(r,type,year,month,blood){const traits=[];if(type[0]==='I')traits.push('차분하게 판단하는 성향');else traits.push('적극적으로 움직이는 성향');if(type[2]==='T')traits.push('상황 분석을 즐기는 성향');else traits.push('팀과의 호흡을 중시하는 성향');const match={TOP:'라인에서 버티며 승부를 보는 역할',JUNGLE:'맵을 돌아다니며 기회를 만드는 역할',MID:'빠른 판단과 로밍이 중요한 역할',BOTTOM:'꾸준히 성장해 후반을 책임지는 역할',UTILITY:'팀원을 돕고 시야를 잡는 역할'};return `${traits.join('과 ')}을 ${match[r.id]}에 재미로 연결했어요. 생년월·혈액형은 놀이용 점수에만 반영되며 실제 적성과 관계없어요.`;}
 let last=[];
 document.getElementById('funFind').onclick=()=>{
@@ -617,7 +708,7 @@ document.getElementById('funFind').onclick=()=>{
  roles.forEach((r,i)=>weights[i]+=(hash(type+year+month+blood+r.id)%9));
  const ranked=roles.map((r,i)=>({...r,score:weights[i]})).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
  last=ranked.slice(0,3).map((r,i)=>{let idx=hash(type+'-'+year+'-'+month+'-'+blood+'-'+r.id)%r.champs.length;return {...r,champ:r.champs[idx],rank:i+1};});
- document.getElementById('funResult').innerHTML='<p class="good"><b>✨ 추천 결과!</b> '+type+' · '+year+'년 '+month+'월 · '+blood+' 기준, 오늘의 롤 성향은 <b>'+last[0].name+'</b>!</p><div class="personality-result">'+last.map(r=>'<div class="personality-card"><span class="tag">'+r.rank+'순위 추천</span><div class="fun-champ"><img src="'+funChampImage(r.champ)+'" alt="'+r.champ+'" onerror="this.style.display=\'none\'"><div><h3>'+r.name+' · '+r.champ+'</h3><p class="small">'+r.desc+'</p></div></div><p class="small"><b>추천 이유:</b> '+funReason(r,type,year,month,blood)+'</p><button class="gold" data-fun-apply="'+r.rank+'">이 조합으로 빌드 보기 ↗</button></div>').join('')+'</div><p class="personality-note">※ 점수는 재미를 위한 임의 규칙이며 MBTI·혈액형·생년월이 게임 실력이나 적성을 예측한다는 근거는 없어.</p>';
+ document.getElementById('funResult').innerHTML='<p class="good"><b>✨ 추천 결과!</b> '+type+' · '+year+'년 '+month+'월 · '+blood+' 기준, 오늘의 롤 성향은 <b>'+last[0].name+'</b>!</p><div class="personality-result">'+last.map(r=>'<div class="personality-card"><span class="tag">'+r.rank+'순위 추천</span><div class="fun-champ"><img src="'+funChampImage(r.champ)+'" alt="'+r.champ+'" onerror="this.style.display=\'none\'"><div><h3>'+r.name+' · '+r.champ+'</h3><p class="small">'+r.desc+'</p></div></div><p class="small fun-reason"><b>추천 이유:</b> '+funReason(r,type,year,month,blood)+'</p>'+funAllyHtml(r.champ)+'<button class="gold" data-fun-apply="'+r.rank+'">이 조합으로 빌드 보기 ↗</button></div>').join('')+'</div><p class="personality-note">※ 점수는 재미를 위한 임의 규칙이며 MBTI·혈액형·생년월이 게임 실력이나 적성을 예측한다는 근거는 없어.</p>';
  document.querySelectorAll('[data-fun-apply]').forEach(b=>b.onclick=()=>{let r=last[Number(b.dataset.funApply)-1];if(!r)return;document.getElementById('position').value=r.id;myChampion=champions.find(c=>c.name===r.champ)||{name:r.champ,id:'',tags:[]};document.getElementById('mychamp').value=r.champ;renderPlayer();refreshAll();document.getElementById('playerstatus').scrollIntoView({behavior:'smooth',block:'center'});});
 };
 document.getElementById('funClear').onclick=()=>{mb.value='';mo.value='';document.getElementById('funYear').value='';document.getElementById('funBlood').value='';last=[];document.getElementById('funResult').innerHTML='';};
@@ -653,7 +744,7 @@ document.getElementById('funClear').onclick=()=>{mb.value='';mo.value='';documen
 })();
 </script>
 
-<!-- V10.1: 넓은 PC에서는 양쪽 여백, 좁은 화면에서는 본문 아래 광고 -->
+<!-- V10.6: 넓은 PC에서는 양쪽 여백, 좁은 화면에서는 본문 아래 광고 -->
 <div class="side-ad-strip" aria-label="추천 상품 광고">
 <aside class="side-ad left" id="sideAdLeft" aria-label="왼쪽 제휴 광고"></aside>
 <aside class="side-ad right" id="sideAdRight" aria-label="오른쪽 제휴 광고"></aside>
@@ -682,7 +773,7 @@ document.getElementById('funClear').onclick=()=>{mb.value='';mo.value='';documen
 })();
 </script>
 <script>
-// V10.1: 개인 입력값/검색어는 수집하지 않고 버튼 사용 횟수만 익명 이벤트로 측정.
+// V10.6: 개인 입력값/검색어는 수집하지 않고 버튼 사용 횟수만 익명 이벤트로 측정.
 (function(){
   document.addEventListener('click',function(e){
     const b=e.target.closest('button');
@@ -703,4 +794,48 @@ document.getElementById('funClear').onclick=()=>{mb.value='';mo.value='';documen
   });
 })();
 </script>
-</body></html>
+<script>
+// V10.6 자체 통계: GitHub Pages에서는 서버 저장소가 필요하다.
+// Supabase 프로젝트 설정 후 아래 두 값을 채워야 기록이 시작된다.
+const JORDAN_STATS_SUPABASE_URL = '';
+const JORDAN_STATS_SUPABASE_ANON_KEY = '';
+(function(){
+ const base=JORDAN_STATS_SUPABASE_URL.replace(/\/$/,'');
+ const key=JORDAN_STATS_SUPABASE_ANON_KEY;
+ const status=document.getElementById('statsStatus');
+ if(location.hash==='#jordan-admin')document.getElementById('statsPanel').style.display='block';
+ const login=document.getElementById('statsSignIn');
+ const logout=document.getElementById('statsSignOut');
+ const results=document.getElementById('statsResults');
+ if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(base)||!key){
+  document.getElementById('statsLogin').style.display='none';return;
+ }
+ status.textContent='방문 기록 저장소 연결됨 · 관리자 로그인 후 날짜별 통계를 볼 수 있어.';
+ const headers=(token)=>({'apikey':key,'Authorization':'Bearer '+(token||key),'Content-Type':'application/json'});
+ let token=null;
+ async function send(path,body,auth){const res=await fetch(base+path,{method:'POST',headers:headers(auth),body:JSON.stringify(body)});if(!res.ok)throw Error('요청 실패 ('+res.status+')');return res.json();}
+ async function loadPublicCount(){try{const r=await send('/rest/v1/rpc/jordan_public_today_hits',{});document.getElementById('todayHitCount').textContent=Number(r).toLocaleString('ko-KR')+'회';}catch(e){document.getElementById('todayHitCount').textContent='집계 대기';}}
+ // 개인정보(이름, MBTI, 생년월, 혈액형, 챔피언 검색어)는 수집하지 않음.
+ // 동일 브라우저 내 일별 중복 방문자는 하나로 계산.
+ try{
+  let visitor=localStorage.getItem('jordan_visitor_v103');
+  if(!visitor){visitor=crypto.randomUUID();localStorage.setItem('jordan_visitor_v103',visitor);}
+  send('/rest/v1/rpc/jordan_record_view',{p_visitor:visitor}).then(loadPublicCount).catch(()=>{status.textContent='통계 기록 전송 실패 · 설정 안내서의 SQL과 키를 확인해 줘.';loadPublicCount();});
+ }catch(e){status.textContent='브라우저 저장소가 차단되어 방문 기록을 저장하지 못했어.';loadPublicCount();}
+ login.onclick=async()=>{
+  try{
+   const email=document.getElementById('statsEmail').value;
+   const password=document.getElementById('statsPassword').value;
+   const r=await fetch(base+'/auth/v1/token?grant_type=password',{method:'POST',headers:headers(),body:JSON.stringify({email,password})});
+   if(!r.ok)throw Error('로그인 실패');
+   const auth=await r.json();token=auth.access_token;
+   const rows=await send('/rest/v1/rpc/jordan_admin_daily_stats',{},token);
+   const safe=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+   results.innerHTML='<div style="overflow:auto"><table class="stats-table"><thead><tr><th>날짜 (한국)</th><th>방문자</th><th>조회수</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+safe(x.day)+'</td><td>'+Number(x.visitors)+'</td><td>'+Number(x.views)+'</td></tr>').join('')+'</tbody></table></div>';
+   status.textContent='관리자 통계 · 날짜별 기록';logout.style.display='inline-block';
+   document.getElementById('statsPassword').value='';
+  }catch(e){results.textContent='관리자 인증 또는 통계 조회 실패. 관리자 계정 및 SQL 설정을 확인해 줘.';}
+ };
+ logout.onclick=()=>{token=null;results.textContent='';logout.style.display='none';status.textContent='로그아웃했어.'};
+})();
+</script></body></html>
